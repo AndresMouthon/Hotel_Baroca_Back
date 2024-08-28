@@ -1,43 +1,31 @@
 const { Model, DataTypes, Sequelize } = require("sequelize");
 const { sequelize } = require("../../../config/sequelize.config");
+const { Rol } = require("./Rol.model");
 
-class Habitacion extends Model { };
+class Usuario extends Model { };
 
-Habitacion.init({
+Usuario.init({
     id: {
         type: DataTypes.INTEGER,
+        allowNull: false,
         primaryKey: true,
         autoIncrement: true,
     },
-    nombre_habitacion: {
+    usuario: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    descripcion_habitacion: {
+    password: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    numero_habitacion: {
+    rol_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
-    },
-    capacidad_habitacion: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-    },
-    precio_habitacion: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    tipo_habitacion: {
-        type: DataTypes.ENUM('Individual', 'Doble', 'Triple'),
-        allowNull: false,
-    },
-    disponibilidad: {
-        type: DataTypes.ENUM('Disponible', 'No disponible'),
-        allowNull: false,
-        defaultValue: "Disponible"
-        
+        references: {
+            model: Rol,
+            key: 'id',
+        },
     },
     created_at: {
         type: DataTypes.DATE,
@@ -51,11 +39,14 @@ Habitacion.init({
     },
 }, {
     sequelize,
-    modelName: "Habitaciones",
-    tableName: "habitaciones",
+    modelName: "Usuario",
+    tableName: "usuarios",
     timestamps: false,
 });
 
+Rol.hasMany(Usuario, { foreignKey: 'rol_id' });
+Usuario.belongsTo(Rol, { foreignKey: 'rol_id' });
+
 module.exports = {
-    Habitacion,
-}
+    Usuario
+};

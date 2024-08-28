@@ -1,5 +1,6 @@
 const { Model, DataTypes, Sequelize } = require("sequelize");
 const { sequelize } = require("../../../config/sequelize.config");
+const { Habitacion } = require("../habitacion/Habitacion.model");
 
 class Preregistro extends Model { };
 
@@ -57,6 +58,14 @@ Preregistro.init({
         type: DataTypes.INTEGER,
         allowNull: true,
     },
+    habitacion_id: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        references: {
+            model: Habitacion,
+            key: "id",
+        },
+    },
     is_group: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
@@ -77,6 +86,9 @@ Preregistro.init({
     tableName: "preregistros",
     timestamps: false,
 });
+
+Habitacion.hasMany(Preregistro, { foreignKey: "habitacion_id" });
+Preregistro.belongsTo(Habitacion, { foreignKey: "habitacion_id" });
 
 module.exports = {
     Preregistro

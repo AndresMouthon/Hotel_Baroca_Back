@@ -1,6 +1,6 @@
 const ruta = require("express").Router();
 const { validarBodyPregistro } = require("../../schemas/registro/preregistro.schema");
-const { postCrearRegistro, getPreregistro } = require("../../controllers/registro/preregistro.controller");
+const { postCrearRegistro, getPreregistro, getPreregistroByUsuario, putActualizarPreregistro } = require("../../controllers/registro/preregistro.controller");
 const { validacionDeParametros } = require("../../middlewares/validaciones.middleware");
 
 ruta.get("/todos-los-preregistros",
@@ -14,18 +14,24 @@ ruta.get("/todos-los-preregistros",
     }
 );
 
-ruta.post("/crear-preregistro",
+ruta.post("/guardar-preregistro",
     validarBodyPregistro,
     validacionDeParametros,
     async (req, res) => {
-        try {
+        const buscarPreregistro = await getPreregistroByUsuario(req.body.documento);
+        console.log(buscarPreregistro.length);
+        if (buscarPreregistro.length == 0) {
             const preregistro = await postCrearRegistro(req.body);
             res.status(201).json({
                 status: true,
                 message: preregistro,
             });
-        } catch (error) {
-            res.status(400).json({ mensaje: "La peticion fallo", error });
+        } else {
+            const preregistro = await putActualizarPreregistro(req.body);
+            res.status(200).json({
+                status: true,
+                message: preregistro,
+            });
         }
     }
 );

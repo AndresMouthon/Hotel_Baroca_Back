@@ -56,7 +56,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: true,
       },
-      cantidad_habitaciones: {
+      habitacion_id: {
         type: Sequelize.INTEGER,
         allowNull: true,
       },

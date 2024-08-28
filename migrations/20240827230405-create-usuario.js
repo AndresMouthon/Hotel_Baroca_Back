@@ -2,40 +2,24 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('habitaciones', {
+    await queryInterface.createTable('usuarios', {
       id: {
         type: Sequelize.INTEGER,
+        allowNull: false,
         primaryKey: true,
         autoIncrement: true,
       },
-      nombre_habitacion: {
+      usuario: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      descripcion_habitacion: {
+      password: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      numero_habitacion: {
+      rol_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
-      },
-      capacidad_habitacion: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-      },
-      precio_habitacion: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      tipo_habitacion: {
-        type: Sequelize.ENUM("Estandar", "Doble", "Triple"),
-        allowNull: false,
-      },
-      disponibilidad: {
-        type: Sequelize.ENUM("Disponible", "No disponible"),
-        allowNull: false,
-        defaultValue: "Disponible"
       },
       created_at: {
         type: Sequelize.DATE,
@@ -49,10 +33,10 @@ module.exports = {
       },
     }, {
       timestamps: false,
-      modelName: "habitaciones",
+      modelName: "usuarios",
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('habitaciones');
+    await queryInterface.dropTable('usuarios');
   }
 };
