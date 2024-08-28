@@ -1,6 +1,7 @@
 const { Model, DataTypes, Sequelize } = require("sequelize");
 const { sequelize } = require("../../../config/sequelize.config");
 const { Preregistro } = require("./Preregistro.model");
+const { Habitacion } = require("../habitacion/Habitacion.model");
 
 class DetallePreregistro extends Model { };
 
@@ -46,6 +47,14 @@ DetallePreregistro.init({
         type: DataTypes.STRING,
         allowNull: false,
     },
+    habitacion_id: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+        references: {
+            model: Habitacion,
+            key: "id",
+        },
+    },
     created_at: {
         type: DataTypes.DATE,
         defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
@@ -65,6 +74,9 @@ DetallePreregistro.init({
 
 Preregistro.hasMany(DetallePreregistro, { foreignKey: "preregistro_id" });
 DetallePreregistro.belongsTo(Preregistro, { foreignKey: "preregistro_id" });
+
+Habitacion.hasMany(DetallePreregistro, { foreignKey: "habitacion_id" });
+DetallePreregistro.belongsTo(Habitacion, { foreignKey: "habitacion_id" });
 
 module.exports = {
     DetallePreregistro
