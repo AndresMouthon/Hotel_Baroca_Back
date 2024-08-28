@@ -19,7 +19,6 @@ ruta.post("/guardar-preregistro",
     validacionDeParametros,
     async (req, res) => {
         const buscarPreregistro = await getPreregistroByUsuario(req.body.documento);
-        console.log(buscarPreregistro.length);
         if (buscarPreregistro.length == 0) {
             const preregistro = await postCrearRegistro(req.body);
             res.status(201).json({

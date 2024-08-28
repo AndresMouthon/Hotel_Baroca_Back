@@ -35,7 +35,7 @@ const getPreregistroByUsuario = async (documento = "") => {
 
 const putActualizarPreregistro = async (preregistro = {}) => {
     const { tipo_documento, documento, nombres, apellidos, pais, departamento, ciudad, direccion, email, telefono, fecha_nacimiento, cantidad_personas, cantidad_habitaciones, is_group } = preregistro;
-    await Preregistro.update({
+    const user = await Preregistro.update({
         tipo_documento,
         documento,
         nombres,
@@ -53,7 +53,11 @@ const putActualizarPreregistro = async (preregistro = {}) => {
     }, {
         where: { documento },
     });
-    return "Preregistro actualizado";
+    if (user > 0) {
+        const updatedPreregistro = await getPreregistroByUsuario(documento);
+        return updatedPreregistro;
+    }
+    return null;
 };
 
 module.exports = {
