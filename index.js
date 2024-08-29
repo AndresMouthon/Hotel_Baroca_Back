@@ -24,6 +24,7 @@ const rutaPreregistro = require("./src/routes/registro/preregistro.router");
 const rutaDetallePreregistro = require("./src/routes/registro/detalle-preregistro.router");
 const rutaHabitacion = require("./src/routes/habitacion/habitacion.router");
 const rutaLogin = require("./src/routes/auth/login.router");
+const rutaReserva = require("./src/routes/registro/reserva.router");
 
 const { jwtVerifyTimeToken } = require("./src/utils/jwt.util");
 
@@ -35,6 +36,7 @@ rutaPrincipal.use(rutaPreregistro.indice, rutaPreregistro.ruta);
 rutaPrincipal.use(rutaDetallePreregistro.indice, rutaDetallePreregistro.ruta);
 rutaPrincipal.use(rutaHabitacion.indice, rutaHabitacion.ruta);
 rutaPrincipal.use(rutaLogin.indice, rutaLogin.ruta);
+rutaPrincipal.use(rutaReserva.indice, rutaReserva.ruta);
 
 app.use(jwtVerifyTimeToken);
 app.use("/api", rutaPrincipal);

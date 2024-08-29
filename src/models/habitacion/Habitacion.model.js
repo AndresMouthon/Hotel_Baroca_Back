@@ -30,7 +30,7 @@ Habitacion.init({
         allowNull: false,
     },
     tipo_habitacion: {
-        type: DataTypes.ENUM('Individual', 'Doble', 'Triple'),
+        type: DataTypes.ENUM('Estandar', 'Doble', 'Triple'),
         allowNull: false,
     },
     disponibilidad: {

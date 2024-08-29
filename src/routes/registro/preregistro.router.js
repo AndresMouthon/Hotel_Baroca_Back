@@ -45,6 +45,17 @@ ruta.put("/terminar-preregistro",
     }
 );
 
+ruta.get("/buscar-preregistro/:documento",
+    async (req, res) => {
+        try {
+            const preregistro = await getPreregistroByUsuario(req.params.documento);
+            res.status(200).json(preregistro);
+        } catch (error) {
+            res.status(400).json({ mensaje: "La peticion fallo", error });
+        };
+    }
+)
+
 module.exports = {
     indice: "/preregistro",
     ruta,
