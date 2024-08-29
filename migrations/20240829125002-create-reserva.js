@@ -72,19 +72,23 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: true,
       },
+      codigo_grupo: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
       fecha_nacimiento: {
         type: Sequelize.STRING,
         allowNull: true,
       },
-      fecha_entrada: {
-        type: Sequelize.STRING,
-        allowNull: false,
+      is_group: {
+        type: Sequelize.BOOLEAN,
+        allowNull: true,
       },
       fecha_salida: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      created_at: {
+      fecha_entrada: {
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
         allowNull: false,

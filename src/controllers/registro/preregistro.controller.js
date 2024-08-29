@@ -33,7 +33,7 @@ const getPreregistroByUsuario = async (documento = "") => {
         where: { documento },
         include: {
             model: DetallePreregistro,
-            attributes: ["id", "nombres", "apellidos", "telefono", "tipo_habitacion"],
+            attributes: ["nombres", "apellidos", "tipo_documento", "documento", "telefono", "tipo_habitacion"],
         }
     });
     return preregistro[0];

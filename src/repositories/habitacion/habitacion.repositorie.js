@@ -9,7 +9,7 @@ const queryFiltrarHabitaciones = async (tipo_habitacion = "") => {
             h.capacidad_habitacion
         FROM habitaciones h
         LEFT JOIN reservas r ON h.id = r.habitacion_id
-        WHERE r.habitacion_id IS NULL AND h.tipo_habitacion = "Triple"
+        WHERE r.habitacion_id IS NULL AND h.tipo_habitacion = ?
     `;
     const parametros = [tipo_habitacion];
     const response = await ejecutarQuery(query, parametros);

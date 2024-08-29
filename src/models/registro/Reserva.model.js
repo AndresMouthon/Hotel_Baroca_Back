@@ -82,15 +82,19 @@ Reserva.init({
             key: 'id',
         },
     },
-    fecha_entrada: {
-        type: DataTypes.STRING,
+    codigo_grupo: {
+        type: DataTypes.INTEGER,
         allowNull: false,
+    },
+    is_group: {
+        type: DataTypes.BOOLEAN,
+        allowNull: true,
     },
     fecha_salida: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    created_at: {
+    fecha_entrada: {
         type: DataTypes.DATE,
         defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
         allowNull: false,
