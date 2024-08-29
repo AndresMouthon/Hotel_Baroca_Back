@@ -36,7 +36,7 @@ const getPreregistroByUsuario = async (documento = "") => {
             attributes: ["id", "nombres", "apellidos", "telefono", "tipo_habitacion"],
         }
     });
-    return preregistro;
+    return preregistro[0];
 };
 
 const putActualizarPreregistro = async (preregistro = {}) => {
