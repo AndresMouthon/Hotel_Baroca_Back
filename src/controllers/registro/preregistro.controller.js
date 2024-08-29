@@ -1,4 +1,5 @@
 const { Preregistro } = require("../../models/registro/Preregistro.model");
+const { postCrearDetallePreregistro } = require("../../controllers/registro/detalle-preregistro.controller");
 
 const postCrearRegistro = async (preregistros = {}) => {
     const { tipo_documento, documento, nombres, apellidos, pais, departamento, ciudad, direccion, email, telefono, fecha_nacimiento, cantidad_personas, cantidad_habitaciones, is_group } = preregistros;
@@ -34,28 +35,20 @@ const getPreregistroByUsuario = async (documento = "") => {
 };
 
 const putActualizarPreregistro = async (preregistro = {}) => {
-    const { tipo_documento, documento, nombres, apellidos, pais, departamento, ciudad, direccion, email, telefono, fecha_nacimiento, cantidad_personas, cantidad_habitaciones, is_group } = preregistro;
+    const { documento } = preregistro;
     const user = await Preregistro.update({
-        tipo_documento,
-        documento,
-        nombres,
-        apellidos,
-        pais,
-        departamento,
-        ciudad,
-        direccion,
-        email,
-        telefono,
-        fecha_nacimiento,
-        cantidad_personas,
-        cantidad_habitaciones,
-        is_group,
+        preregistro
     }, {
         where: { documento },
     });
-    if (user > 0) {
-        const updatedPreregistro = await getPreregistroByUsuario(documento);
-        return updatedPreregistro;
+    if (user.length > 0) {
+        const preregistro_actualizado = await getPreregistroByUsuario(documento);
+        if (preregistro_actualizado[0].tipo_habitacion) {
+            await postCrearDetallePreregistro(preregistro.peopleData);
+            return "Prereserva creada";
+        } else {
+            return preregistro_actualizado[0];
+        }
     }
     return null;
 };

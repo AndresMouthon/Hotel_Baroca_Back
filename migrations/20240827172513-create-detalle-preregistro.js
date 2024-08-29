@@ -8,17 +8,6 @@ module.exports = {
         primaryKey: true,
         autoIncrement: true
       },
-      tipo_documento_id: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-      },
-      documento: {
-        type: Sequelize.STRING
-      },
-      preregistro_id: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-      },
       nombres: {
         type: Sequelize.STRING,
         allowNull: false,
@@ -27,21 +16,24 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      email: {
-        type: Sequelize.STRING,
+      tipo_documento: {
+        type: Sequelize.INTEGER,
         allowNull: false,
+      },
+      documento: {
+        type: Sequelize.STRING
       },
       telefono: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      fecha_nacimiento: {
-        type: Sequelize.STRING,
+      tipo_habitacion: {
+        type: Sequelize.ENUM('Estandar', 'Doble', 'Triple'),
         allowNull: false,
       },
-      habitacion_id: {
+      preregistro_id: {
         type: Sequelize.INTEGER,
-        allowNull: true,
+        allowNull: false,
       },
       created_at: {
         type: Sequelize.DATE,

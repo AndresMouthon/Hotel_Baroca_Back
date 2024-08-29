@@ -8,19 +8,19 @@ module.exports = {
         primaryKey: true,
         autoIncrement: true,
       },
-      tipo_documento: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      documento: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
       nombres: {
         type: Sequelize.STRING,
         allowNull: false,
       },
       apellidos: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      tipo_documento: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      documento: {
         type: Sequelize.STRING,
         allowNull: false,
       },
@@ -40,11 +40,11 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      email: {
+      telefono: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      telefono: {
+      email: {
         type: Sequelize.STRING,
         allowNull: false,
       },
@@ -56,8 +56,12 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: true,
       },
-      habitacion_id: {
+      cantidad_habitaciones: {
         type: Sequelize.INTEGER,
+        allowNull: true,
+      },
+      tipo_habitacion: {
+        type: Sequelize.ENUM('Estandar', 'Doble', 'Triple'),
         allowNull: true,
       },
       is_group: {

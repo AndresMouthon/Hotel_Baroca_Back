@@ -20,7 +20,7 @@ module.exports = {
         capacidad_habitacion: 2,
         precio_habitacion: "180000",
         tipo_habitacion: "Doble",
-        disponibilidad: "No disponible"
+        disponibilidad: "Disponible"
       }
     ], {});
   },

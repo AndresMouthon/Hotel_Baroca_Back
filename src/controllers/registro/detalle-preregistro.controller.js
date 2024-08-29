@@ -13,14 +13,14 @@ const getDetallePreregistros = async () => {
 
 const postCrearDetallePreregistro = async (detallePreregistro = []) => {
     for (const preregistro of detallePreregistro) {
-        const { tipo_documento, documento, preregistro_id, nombres, apellidos, fecha_nacimiento } = preregistro;
+        const { tipo_documento, documento, preregistro_id, nombres, apellidos, telefono } = preregistro;
         await DetallePreregistro.create({
             tipo_documento,
             documento,
             preregistro_id,
             nombres,
             apellidos,
-            fecha_nacimiento,
+            telefono,
         });
     };
     return "Detalle de preregistro creada";

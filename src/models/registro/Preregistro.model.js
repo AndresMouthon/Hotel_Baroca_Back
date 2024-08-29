@@ -1,6 +1,5 @@
 const { Model, DataTypes, Sequelize } = require("sequelize");
 const { sequelize } = require("../../../config/sequelize.config");
-const { Habitacion } = require("../habitacion/Habitacion.model");
 
 class Preregistro extends Model { };
 
@@ -10,14 +9,6 @@ Preregistro.init({
         primaryKey: true,
         autoIncrement: true
     },
-    tipo_documento: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    documento: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
     nombres: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -26,7 +17,19 @@ Preregistro.init({
         type: DataTypes.STRING,
         allowNull: false,
     },
+    tipo_documento: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    documento: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
     pais: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    departamento: {
         type: DataTypes.STRING,
         allowNull: false,
     },
@@ -38,11 +41,11 @@ Preregistro.init({
         type: DataTypes.STRING,
         allowNull: false,
     },
-    email: {
+    telefono: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    telefono: {
+    email: {
         type: DataTypes.STRING,
         allowNull: false,
     },
@@ -58,13 +61,9 @@ Preregistro.init({
         type: DataTypes.INTEGER,
         allowNull: true,
     },
-    habitacion_id: {
-        type: DataTypes.INTEGER,
+    tipo_habitacion: {
+        type: DataTypes.ENUM('Estandar', 'Doble', 'Triple'),
         allowNull: true,
-        references: {
-            model: Habitacion,
-            key: "id",
-        },
     },
     is_group: {
         type: DataTypes.BOOLEAN,
@@ -86,9 +85,6 @@ Preregistro.init({
     tableName: "preregistros",
     timestamps: false,
 });
-
-Habitacion.hasMany(Preregistro, { foreignKey: "habitacion_id" });
-Preregistro.belongsTo(Habitacion, { foreignKey: "habitacion_id" });
 
 module.exports = {
     Preregistro
