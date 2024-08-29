@@ -43,14 +43,24 @@ const putActualizarPreregistro = async (preregistro = {}) => {
     });
     if (user.length > 0) {
         const preregistro_actualizado = await getPreregistroByUsuario(documento);
-        if (preregistro_actualizado[0].tipo_habitacion) {
-            await postCrearDetallePreregistro(preregistro.peopleData);
-            return "Prereserva creada";
-        } else {
-            return preregistro_actualizado[0];
-        }
+        return preregistro_actualizado[0];
     }
     return null;
+};
+
+const terminarPreregistro = async (preregistro = {}) => {
+    const { documento, tipo_habitacion, peopleData } = preregistro;
+    try {
+        await Preregistro.update({
+            tipo_habitacion,
+        }, {
+            where: { documento },
+        });
+        await postCrearDetallePreregistro(peopleData);
+        return "Preregistro terminado";
+    } catch (error) {
+        console.log(error);
+    }
 };
 
 module.exports = {
@@ -58,4 +68,5 @@ module.exports = {
     getPreregistro,
     getPreregistroByUsuario,
     putActualizarPreregistro,
+    terminarPreregistro,
 };

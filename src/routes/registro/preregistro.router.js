@@ -1,6 +1,6 @@
 const ruta = require("express").Router();
 const { validarBodyPregistro } = require("../../schemas/registro/preregistro.schema");
-const { postCrearRegistro, getPreregistro, getPreregistroByUsuario, putActualizarPreregistro } = require("../../controllers/registro/preregistro.controller");
+const { postCrearRegistro, getPreregistro, getPreregistroByUsuario, putActualizarPreregistro, terminarPreregistro } = require("../../controllers/registro/preregistro.controller");
 const { validacionDeParametros } = require("../../middlewares/validaciones.middleware");
 
 ruta.get("/todos-los-preregistros",
@@ -32,6 +32,16 @@ ruta.post("/guardar-preregistro",
                 message: preregistro,
             });
         }
+    }
+);
+
+ruta.put("/terminar-preregistro",
+    async (req, res) => {
+        const preregistro = await terminarPreregistro(req.body);
+        res.status(200).json({
+            status: true,
+            message: preregistro,
+        });
     }
 );
 
