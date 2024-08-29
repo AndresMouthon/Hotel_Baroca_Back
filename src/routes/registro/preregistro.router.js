@@ -49,7 +49,10 @@ ruta.get("/buscar-preregistro/:documento",
     async (req, res) => {
         try {
             const preregistro = await getPreregistroByUsuario(req.params.documento);
-            res.status(200).json(preregistro);
+            res.status(200).json({
+                status: true,
+                preregistro
+            });
         } catch (error) {
             res.status(400).json({ mensaje: "La peticion fallo", error });
         };

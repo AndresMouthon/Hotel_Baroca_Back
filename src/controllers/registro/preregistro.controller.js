@@ -1,5 +1,6 @@
 const { Preregistro } = require("../../models/registro/Preregistro.model");
 const { postCrearDetallePreregistro } = require("../../controllers/registro/detalle-preregistro.controller");
+const { DetallePreregistro } = require("../../models/registro/DetallePreregistro.model");
 
 const postCrearRegistro = async (preregistros = {}) => {
     const { tipo_documento, documento, nombres, apellidos, pais, departamento, ciudad, direccion, email, telefono, fecha_nacimiento, cantidad_personas, cantidad_habitaciones, is_group } = preregistros;
@@ -30,6 +31,10 @@ const getPreregistro = async () => {
 const getPreregistroByUsuario = async (documento = "") => {
     const preregistro = await Preregistro.findAll({
         where: { documento },
+        include: {
+            model: DetallePreregistro,
+            attributes: ["id", "nombres", "apellidos", "telefono", "tipo_habitacion"],
+        }
     });
     return preregistro;
 };
