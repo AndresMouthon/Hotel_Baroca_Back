@@ -4,7 +4,7 @@ const postCrearReserva = async (reserva = []) => {
     for (const item of reserva) {
         await Reserva.create(item);
     };
-    return "Reserva realizada";
+    return reserva;
 };
 
 const getReservas = async () => {
