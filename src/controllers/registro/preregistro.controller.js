@@ -3,24 +3,28 @@ const { postCrearDetallePreregistro } = require("../../controllers/registro/deta
 const { DetallePreregistro } = require("../../models/registro/DetallePreregistro.model");
 
 const postCrearRegistro = async (preregistros = {}) => {
-    const { tipo_documento, documento, nombres, apellidos, pais, departamento, ciudad, direccion, email, telefono, fecha_nacimiento, cantidad_personas, cantidad_habitaciones, is_group } = preregistros;
-    const user = await Preregistro.create({
-        tipo_documento,
-        documento,
-        nombres,
-        apellidos,
-        pais,
-        departamento,
-        ciudad,
-        direccion,
-        email,
-        telefono,
-        fecha_nacimiento,
-        cantidad_personas,
-        cantidad_habitaciones,
-        is_group,
-    });
-    return user;
+    try {
+        const { tipo_documento, documento, nombres, apellidos, pais, departamento, ciudad, direccion, email, telefono, fecha_nacimiento, cantidad_personas, cantidad_habitaciones, is_group } = preregistros;
+        const user = await Preregistro.create({
+            tipo_documento,
+            documento,
+            nombres,
+            apellidos,
+            pais,
+            departamento,
+            ciudad,
+            direccion,
+            email,
+            telefono,
+            fecha_nacimiento,
+            cantidad_personas,
+            cantidad_habitaciones,
+            is_group,
+        });
+        return user;
+    } catch (error) {
+        console.log(error);
+    }
 };
 
 const getPreregistro = async () => {
@@ -36,7 +40,7 @@ const getPreregistroByUsuario = async (documento = "") => {
             attributes: ["nombres", "apellidos", "tipo_documento", "documento", "telefono", "tipo_habitacion"],
         }
     });
-    return preregistro[0];
+    return preregistro;
 };
 
 const putActualizarPreregistro = async (preregistro = {}) => {
@@ -48,7 +52,7 @@ const putActualizarPreregistro = async (preregistro = {}) => {
     });
     if (user.length > 0) {
         const preregistro_actualizado = await getPreregistroByUsuario(documento);
-        return preregistro_actualizado[0];
+        return preregistro_actualizado;
     }
     return null;
 };

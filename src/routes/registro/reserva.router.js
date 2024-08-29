@@ -27,6 +27,7 @@ ruta.post("/crear-reserva",
                 } else {
                     detalle_preregistro.habitacion_id = habitaciones[0].id;
                     detalle_preregistro.codigo_grupo = req.body.id;
+                    detalle_preregistro.fecha_salida = req.body.fecha_salida;
                 }
             }
             delete req.body.DetallePreregistros;
