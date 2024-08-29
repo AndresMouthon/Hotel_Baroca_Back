@@ -1,6 +1,7 @@
 const { createToken } = require("../../utils/jwt.util");
 const { comparePassword } = require("../../utils/functions.util");
 const { encriptacion, LLAVE_SEGUNDA } = require("../../utils/crypto.util");
+const { getEmpleadoById } = require("../../controllers/persona/empleado.controller");
 const { Usuario } = require("../../models/auth/Usuario.model");
 
 const login = async (usuario = "", passwordParam = "") => {
@@ -9,11 +10,12 @@ const login = async (usuario = "", passwordParam = "") => {
             where: { usuario },
         });
         if (response) {
-            const { password, rol_id } = response.dataValues;
+            const { id, password, rol_id } = response.dataValues;
             const comparacionPassword = await comparePassword(password, passwordParam);
             if (!comparacionPassword) {
                 return Promise.reject({
-                    message: "¡Clave incorrecta!",
+                    message: "Clave incorrecta",
+                    status: false,
                 });
             }
             const jwtData = {
@@ -26,14 +28,19 @@ const login = async (usuario = "", passwordParam = "") => {
                 process.env.JWT_SECRETO,
                 { expiresIn: "24h" }
             );
+            const usuarioBuscar = await getEmpleadoById(id);
             const data = {
                 usuario,
+                user: usuarioBuscar.dataValues,
                 token,
-                rol_id,
+                credenciales: {
+                    usuario,
+                    rol_id,
+                },
             };
             return data;
         };
-        return Promise.reject({ message: "¡Usuario no encontrado!" });
+        return Promise.reject({ message: "No encontrado", status: false });
     } catch (error) {
         console.log(error);
         return Promise.reject({

@@ -7,8 +7,9 @@ ruta.post("/", (req, res) => {
     login(usuario, password)
         .then((respuesta) => res.status(200).json({ 
             token: respuesta.token, 
-            rol: respuesta.rol_id,
-            usuario: respuesta.usuario,
+            credenciales: respuesta.credenciales,
+            usuario: respuesta.user,
+            status: true,
         }))
         .catch((error) => {
             res.json(error);
