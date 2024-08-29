@@ -1,6 +1,7 @@
 const ruta = require("express").Router();
 const { getHabitacionesFiltradas } = require("../../controllers/habitacion/habitacion.controller");
-const { postCrearReserva } = require("../../controllers/registro/reserva.controller");
+const { postCrearReserva, getReservas } = require("../../controllers/registro/reserva.controller");
+
 ruta.post("/crear-reserva",
     async (req, res) => {
         try {
@@ -39,6 +40,17 @@ ruta.post("/crear-reserva",
         };
     }
 );
+
+ruta.get("/todas-las-reservas",
+    async (req, res) => {
+        try {
+            const reservas = await getReservas();
+            res.status(200).json(reservas);
+        } catch (error) {
+            res.status(400).json({ mensaje: "La peticion fallo", error });
+        };
+    }
+)
 
 module.exports = {
     indice: "/reserva",

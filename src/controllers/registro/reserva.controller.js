@@ -7,6 +7,12 @@ const postCrearReserva = async (reserva = []) => {
     return "Reserva realizada";
 };
 
+const getReservas = async () => {
+    const reservas = await Reserva.findAll();
+    return reservas;
+};
+
 module.exports = {
     postCrearReserva,
+    getReservas,
 };
