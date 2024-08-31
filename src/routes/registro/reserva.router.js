@@ -13,7 +13,6 @@ ruta.post("/crear-reserva",
                 });
             } else {
                 req.body.habitacion_id = habitacionesGenerales[0].id;
-                req.body.codigo_grupo = req.body.id;
                 delete req.body.created_at;
                 delete req.body.updated_at;
             }
@@ -50,7 +49,7 @@ ruta.get("/todas-las-reservas",
             res.status(400).json({ mensaje: "La peticion fallo", error });
         };
     }
-)
+);
 
 module.exports = {
     indice: "/reserva",
