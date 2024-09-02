@@ -4,7 +4,7 @@ const getClienteByCedula = async (documento = "") => {
     const cliente = await Cliente.findOne({
         where: { documento },
     });
-    return empleado;
+    return cliente;
 };
 
 module.exports = {

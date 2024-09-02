@@ -5,10 +5,17 @@ ruta.get("/buscar-cliente/:documento",
     async (req, res) => {
         try {
             const cliente = await getClienteByCedula(req.params.documento);
-            res.status(200).json({
-                status: true,
-                cliente,
-            });
+            if (cliente) {
+                res.status(200).json({
+                    status: true,
+                    cliente,
+                });
+            } else {
+                res.status(200).json({
+                    status: false,
+                });
+            }
+
         } catch (error) {
             res.status(400).json({ mensaje: "La peticion fallo", error });
         };
