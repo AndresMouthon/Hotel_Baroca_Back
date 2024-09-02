@@ -7,6 +7,10 @@ const getClienteByCedula = async (documento = "") => {
     return cliente;
 };
 
+const postCrearCliente = async (cliente = {}) => {
+    
+};
+
 module.exports = {
     getClienteByCedula,
 };

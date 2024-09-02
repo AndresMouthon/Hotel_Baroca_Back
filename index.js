@@ -9,7 +9,7 @@ const { sequelize } = require("./config/sequelize.config");
 
 (async () => {
     try {
-        await sequelize.sync({ alter: true });
+        await sequelize.sync({ force: true });
     } catch (error) {
         console.log(error);
     }
