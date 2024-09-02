@@ -1,14 +1,14 @@
 const ruta = require("express").Router();
-const { getClienteByCedula } = require("../../controllers/persona/cliente.controller");
+const { getEspacioByType } = require("../../controllers/espacio/espacio.controller");
 
-ruta.get("/buscar-cliente/:documento",
+ruta.get("/buscar-espacio/:espacio",
     async (req, res) => {
         try {
-            const cliente = await getClienteByCedula(req.params.documento);
-            if (cliente) {
+            const espacio = await getEspacioByType(req.params.espacio);
+            if (espacio) {
                 res.status(200).json({
                     status: true,
-                    cliente,
+                    espacio,
                 });
             } else {
                 res.status(200).json({
@@ -22,11 +22,7 @@ ruta.get("/buscar-cliente/:documento",
     }
 );
 
-ruta.post("/guardar-cliente",
-    
-);
-
 module.exports = {
-    indice: "/cliente",
+    indice: "/espacio",
     ruta,
 };
