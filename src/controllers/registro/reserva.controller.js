@@ -1,4 +1,5 @@
 const { Reserva } = require("../../models/registro/Reserva.model");
+const { Sequelize } = require('sequelize');
 
 const postCrearReserva = async (reserva = []) => {
     for (const item of reserva) {
@@ -12,7 +13,13 @@ const postCrearReserva = async (reserva = []) => {
 };
 
 const getReservas = async () => {
-    const reservas = await Reserva.findAll();
+    const reservas = await Reserva.findAll({
+        where: {
+            ciudad: {
+                [Sequelize.Op.ne]: null
+            }
+        }
+    });
     return reservas;
 };
 
