@@ -8,65 +8,17 @@ module.exports = {
         primaryKey: true,
         autoIncrement: true,
       },
-      nombres: {
+      fecha_ingreso: {
         type: Sequelize.STRING,
         allowNull: false,
-      },
-      apellidos: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      tipo_documento: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      documento: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      pais: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      departamento: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      ciudad: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      direccion: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      telefono: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      email: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      fecha_nacimiento: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      cantidad_personas: {
-        type: Sequelize.INTEGER,
-        allowNull: true,
-      },
-      cantidad_habitaciones: {
-        type: Sequelize.INTEGER,
-        allowNull: true,
       },
       tipo_habitacion: {
-        type: Sequelize.ENUM('Estandar', 'Doble', 'Triple'),
-        allowNull: true,
-      },
-      is_group: {
-        type: Sequelize.BOOLEAN,
+        type: Sequelize.STRING,
         allowNull: false,
+      },
+      cliente_id: {
+        type: Sequelize.INTEGER,
+        autoIncrement: false,
       },
       created_at: {
         type: Sequelize.DATE,

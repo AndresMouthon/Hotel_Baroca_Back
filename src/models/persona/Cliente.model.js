@@ -1,14 +1,13 @@
 const { Model, DataTypes, Sequelize } = require("sequelize");
 const { sequelize } = require("../../../config/sequelize.config");
-const { Preregistro } = require("./Preregistro.model");
 
-class DetallePreregistro extends Model { };
+class Cliente extends Model { };
 
-DetallePreregistro.init({
+Cliente.init({
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
-        autoIncrement: true
+        autoIncrement: true,
     },
     nombres: {
         type: DataTypes.STRING,
@@ -19,23 +18,40 @@ DetallePreregistro.init({
         allowNull: false,
     },
     tipo_documento: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
     },
     documento: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    pais: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    departamento: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    ciudad: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    direccion: {
+        type: DataTypes.STRING,
+        allowNull: false,
     },
     telefono: {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    preregistro_id: {
-        type: DataTypes.INTEGER,
+    email: {
+        type: DataTypes.STRING,
         allowNull: false,
-        references: {
-            model: Preregistro,
-            key: "id",
-        },
+    },
+    fecha_nacimiento: {
+        type: DataTypes.STRING,
+        allowNull: false,
     },
     created_at: {
         type: DataTypes.DATE,
@@ -49,14 +65,11 @@ DetallePreregistro.init({
     },
 }, {
     sequelize,
-    modelName: "DetallePreregistro",
-    tableName: "detalles_preregistros",
+    modelName: "Clientes",
+    tableName: "clientes",
     timestamps: false,
 });
 
-Preregistro.hasMany(DetallePreregistro, { foreignKey: "preregistro_id" });
-DetallePreregistro.belongsTo(Preregistro, { foreignKey: "preregistro_id" });
-
 module.exports = {
-    DetallePreregistro,
+    Cliente
 };

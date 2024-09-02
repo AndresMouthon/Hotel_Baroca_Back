@@ -1,4 +1,5 @@
 require("./habitacion/Habitacion.model");
+require("./persona/Cliente.model");
 require("./registro/Preregistro.model");
 require("./registro/DetallePreregistro.model");
 require("./auth/Rol.model");

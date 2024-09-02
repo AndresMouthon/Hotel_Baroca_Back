@@ -1,5 +1,6 @@
 const { Model, DataTypes, Sequelize } = require("sequelize");
 const { sequelize } = require("../../../config/sequelize.config");
+const { Cliente } = require("../persona/Cliente.model");
 
 class Preregistro extends Model { };
 
@@ -7,67 +8,23 @@ Preregistro.init({
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
-        autoIncrement: true
+        autoIncrement: true,
     },
-    nombres: {
+    fecha_ingreso: {
         type: DataTypes.STRING,
         allowNull: false,
-    },
-    apellidos: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    tipo_documento: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    documento: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    pais: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    departamento: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    ciudad: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    direccion: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    telefono: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    email: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    fecha_nacimiento: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    cantidad_personas: {
-        type: DataTypes.INTEGER,
-        allowNull: true,
-    },
-    cantidad_habitaciones: {
-        type: DataTypes.INTEGER,
-        allowNull: true,
     },
     tipo_habitacion: {
-        type: DataTypes.ENUM('Estandar', 'Doble', 'Triple'),
-        allowNull: true,
-    },
-    is_group: {
-        type: DataTypes.BOOLEAN,
+        type: DataTypes.STRING,
         allowNull: false,
+    },
+    cliente_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: Cliente,
+            key: "id",
+        },
     },
     created_at: {
         type: DataTypes.DATE,
@@ -85,6 +42,9 @@ Preregistro.init({
     tableName: "preregistros",
     timestamps: false,
 });
+
+Cliente.hasMany(Preregistro, {foreignKey: "cliente_id"});
+Preregistro.belongsTo(Cliente, {foreignKey: "cliente_id"});
 
 module.exports = {
     Preregistro

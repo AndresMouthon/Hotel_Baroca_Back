@@ -2,11 +2,11 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('detalles_preregistros', {
+    await queryInterface.createTable('clientes', {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
-        autoIncrement: true
+        autoIncrement: true,
       },
       nombres: {
         type: Sequelize.STRING,
@@ -17,18 +17,39 @@ module.exports = {
         allowNull: false,
       },
       tipo_documento: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: false,
       },
       documento: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      pais: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      departamento: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      ciudad: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      direccion: {
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       telefono: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      preregistro_id: {
-        type: Sequelize.INTEGER,
+      email: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      fecha_nacimiento: {
+        type: Sequelize.STRING,
         allowNull: false,
       },
       created_at: {
@@ -43,10 +64,10 @@ module.exports = {
       },
     }, {
       timestamps: false,
-      modelName: "detalles_preregistros",
+      modelName: "clientes",
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('detalles_preregistros');
+    await queryInterface.dropTable('clientes');
   }
 };
