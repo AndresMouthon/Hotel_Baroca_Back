@@ -26,14 +26,14 @@ ruta.post("/guardar-cliente",
     async (req, res) => {
         const buscarCliente = await getClienteByCedula(req.body.documento);
         if (buscarCliente) {
-            const cliente = await postCrearCliente(req.body);
-            res.status(201).json({
+            const cliente = await putActualizarCliente(req.body);
+            res.status(200).json({
                 status: true,
                 message: cliente,
             });
         } else {
-            const cliente = await putActualizarCliente(req.body);
-            res.status(200).json({
+            const cliente = await postCrearCliente(req.body);
+            res.status(201).json({
                 status: true,
                 message: cliente,
             });

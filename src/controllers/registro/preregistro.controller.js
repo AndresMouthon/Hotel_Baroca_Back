@@ -56,7 +56,6 @@ const terminarPreregistro = async (preregistro = {}) => {
             where: { documento },
         });
         const buscarPreregistro = await getPreregistroByUsuario(documento);
-        console.log(buscarPreregistro);
         await postCrearDetallePreregistro(peopleData);
         return "Preregistro terminado";
     } catch (error) {
