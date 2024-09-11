@@ -10,11 +10,11 @@ module.exports = {
       },
       fecha_ingreso: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       tipo_habitacion: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       cliente_id: {
         type: Sequelize.INTEGER,
