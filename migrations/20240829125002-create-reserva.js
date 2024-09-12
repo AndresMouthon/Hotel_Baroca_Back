@@ -8,58 +8,6 @@ module.exports = {
         primaryKey: true,
         autoIncrement: true,
       },
-      nombres: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      apellidos: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      tipo_documento: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      documento: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      telefono: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      tipo_habitacion: {
-        type: Sequelize.ENUM('Estandar', 'Doble', 'Triple'),
-        allowNull: false,
-      },
-      pais: {
-        type: Sequelize.STRING,
-        allowNull: true,
-      },
-      departamento: {
-        type: Sequelize.STRING,
-        allowNull: true,
-      },
-      ciudad: {
-        type: Sequelize.STRING,
-        allowNull: true,
-      },
-      direccion: {
-        type: Sequelize.STRING,
-        allowNull: true,
-      },
-      email: {
-        type: Sequelize.STRING,
-        allowNull: true,
-      },
-      cantidad_persona: {
-        type: Sequelize.INTEGER,
-        allowNull: true,
-      },
-      cantidad_habitacion: {
-        type: Sequelize.INTEGER,
-        allowNull: true,
-      },
       transporte: {
         type: Sequelize.STRING,
         allowNull: true,
@@ -72,16 +20,8 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: true,
       },
-      codigo_grupo: {
+      preregistro_id: {
         type: Sequelize.INTEGER,
-        allowNull: false,
-      },
-      fecha_nacimiento: {
-        type: Sequelize.STRING,
-        allowNull: true,
-      },
-      is_group: {
-        type: Sequelize.BOOLEAN,
         allowNull: true,
       },
       fecha_salida: {

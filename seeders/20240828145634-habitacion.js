@@ -4,7 +4,6 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.bulkInsert('habitaciones', [
-      // Habitaciones estandar
       {
         nombre_habitacion: "Estandar Simple",
         descripcion_habitacion: "Habitación ideal para una persona, con una cama individual y un ambiente acogedor.",

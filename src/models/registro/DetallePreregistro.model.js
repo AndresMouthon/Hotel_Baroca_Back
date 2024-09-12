@@ -18,16 +18,8 @@ DetallePreregistro.init({
         type: DataTypes.STRING,
         allowNull: false,
     },
-    tipo_documento: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-    },
     documento: {
         type: DataTypes.STRING
-    },
-    telefono: {
-        type: DataTypes.STRING,
-        allowNull: false,
     },
     preregistro_id: {
         type: DataTypes.INTEGER,

@@ -13,11 +13,11 @@ Preregistro.init({
     },
     fecha_ingreso: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
     },
     tipo_habitacion: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
     },
     cliente_id: {
         type: DataTypes.INTEGER,

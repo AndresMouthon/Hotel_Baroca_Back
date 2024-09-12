@@ -2,26 +2,23 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('preregistros', {
+    await queryInterface.createTable('espacio_eventos', {
       id: {
         type: Sequelize.INTEGER,
-        primaryKey: true,
+        allowNull: false,
         autoIncrement: true,
-      },
-      fecha_ingreso: {
-        type: Sequelize.STRING,
-        allowNull: true,
-      },
-      tipo_habitacion: {
-        type: Sequelize.STRING,
-        allowNull: true,
-      },
-      cliente_id: {
-        type: Sequelize.INTEGER,
-        autoIncrement: false,
+        primaryKey: true,
       },
       espacio_id: {
         type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      fecha: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      hora: {
+        type: Sequelize.STRING,
         allowNull: false,
       },
       created_at: {
@@ -36,10 +33,10 @@ module.exports = {
       },
     }, {
       timestamps: false,
-      modelName: "preregistros",
+      modelName: "espacio_eventos",
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('preregistros');
+    await queryInterface.dropTable('espacio_eventos');
   }
 };

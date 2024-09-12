@@ -5,7 +5,7 @@ const getDetallePreregistros = async () => {
     const detallePreregistros = await DetallePreregistro.findAll({
         include: {
             model: Preregistro,
-            attributes: ["id", "tipo_documento", "documento", "nombres", "apellidos", "email", "telefono", "fecha_nacimiento"],
+            attributes: ["documento", "nombres", "apellidos"],
         },
     });
     return detallePreregistros;
@@ -13,18 +13,15 @@ const getDetallePreregistros = async () => {
 
 const postCrearDetallePreregistro = async (detallePreregistro = []) => {
     for (const preregistro of detallePreregistro) {
-        const { tipo_documento, documento, preregistro_id, nombres, apellidos, telefono, tipo_habitacion } = preregistro;
+        const { documento, preregistro_id, nombres, apellidos } = preregistro;
         await DetallePreregistro.create({
-            tipo_documento,
-            documento,
-            preregistro_id,
             nombres,
             apellidos,
-            telefono,
-            tipo_habitacion,
+            documento,
+            preregistro_id,
         });
     };
-    return "Detalle de preregistro creada";
+    return "Detalle de preregistro creado";
 };
 
 module.exports = {

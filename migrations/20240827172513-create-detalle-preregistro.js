@@ -16,16 +16,8 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      tipo_documento: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-      },
       documento: {
         type: Sequelize.STRING
-      },
-      telefono: {
-        type: Sequelize.STRING,
-        allowNull: false,
       },
       preregistro_id: {
         type: Sequelize.INTEGER,

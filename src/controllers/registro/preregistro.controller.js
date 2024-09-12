@@ -6,20 +6,10 @@ const postCrearRegistro = async (preregistros = {}) => {
     try {
         const { tipo_documento, documento, nombres, apellidos, pais, departamento, ciudad, direccion, email, telefono, fecha_nacimiento, cantidad_personas, cantidad_habitaciones, is_group } = preregistros;
         const user = await Preregistro.create({
-            tipo_documento,
-            documento,
-            nombres,
-            apellidos,
-            pais,
-            departamento,
-            ciudad,
-            direccion,
-            email,
-            telefono,
-            fecha_nacimiento,
-            cantidad_personas,
-            cantidad_habitaciones,
-            is_group,
+            fecha,
+            tipo_habitacion,
+            cliente_id,
+            espacio_id,
         });
         return user;
     } catch (error) {
@@ -66,7 +56,6 @@ const terminarPreregistro = async (preregistro = {}) => {
             where: { documento },
         });
         const buscarPreregistro = await getPreregistroByUsuario(documento);
-        console.log(buscarPreregistro);
         await postCrearDetallePreregistro(peopleData);
         return "Preregistro terminado";
     } catch (error) {
