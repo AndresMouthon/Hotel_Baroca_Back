@@ -1,8 +1,8 @@
 const { Espacio } = require("../../models/espacio/Espacio.model");
 
-const getEspacioByType = async (espacio = "") => {
+const getEspacioByType = async (type = "") => {
     const cliente = await Espacio.findAll({
-        where: { tipo_espacio: documento },
+        where: { tipo_espacio: type },
     });
     return cliente;
 };
