@@ -14,6 +14,10 @@ Espacio.init({
         allowNull: false,
         type: DataTypes.STRING,
     },
+    tipo_espacio: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
     created_at: {
         type: DataTypes.DATE,
         defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),

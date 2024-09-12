@@ -1,10 +1,10 @@
 const ruta = require("express").Router();
 const { getEspacioByType } = require("../../controllers/espacio/espacio.controller");
 
-ruta.get("/buscar-espacio/:espacio",
+ruta.get("/buscar-espacio/:type",
     async (req, res) => {
         try {
-            const espacio = await getEspacioByType(req.params.espacio);
+            const espacio = await getEspacioByType(req.params.type);
             if (espacio) {
                 res.status(200).json({
                     status: true,

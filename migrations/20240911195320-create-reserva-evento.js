@@ -2,7 +2,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('espacio_eventos', {
+    await queryInterface.createTable('reserva_eventos', {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -33,10 +33,10 @@ module.exports = {
       },
     }, {
       timestamps: false,
-      modelName: "espacio_eventos",
+      modelName: "reserva_eventos",
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('espacio_eventos');
+    await queryInterface.dropTable('reserva_eventos');
   }
 };

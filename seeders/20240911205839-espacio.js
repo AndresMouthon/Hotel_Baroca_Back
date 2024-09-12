@@ -5,10 +5,12 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.bulkInsert('espacios', [
       {
-        descripcion: "Hotel baroca"
+        descripcion: "Hotel baroca",
+        tipo_espacio: "hospedaje"
       },
       {
-        descripcion: "Hotel costa bonita"
+        descripcion: "Hotel costa bonita",
+        tipo_espacio: "hospedaje"
       },
     ], {});
   },

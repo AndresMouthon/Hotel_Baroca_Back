@@ -1,10 +1,10 @@
 const { Model, DataTypes, Sequelize } = require("sequelize");
 const { sequelize } = require("../../../config/sequelize.config");
-const { Espacio } = require("./Espacio.model");
+const { Espacio } = require("../espacio/Espacio.model");
 
-class Espacio_evento extends Model { };
+class Reserva_evento extends Model { };
 
-Espacio_evento.init({
+Reserva_evento.init({
     id: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -39,14 +39,14 @@ Espacio_evento.init({
     },
 }, {
     sequelize,
-    modelName: "Espacio_evento",
-    tableName: "espacios_eventos",
+    modelName: "Reserva_evento",
+    tableName: "reserva_eventos",
     timestamps: false,
 });
 
-Espacio.hasMany(Espacio_evento, { foreignKey: "espacio_id" });
-Espacio_evento.belongsTo(Espacio, { foreignKey: "espacio_id" });
+Espacio.hasMany(Reserva_evento, { foreignKey: "espacio_id" });
+Reserva_evento.belongsTo(Espacio, { foreignKey: "espacio_id" });
 
 module.exports = {
-    Espacio_evento,
+    Reserva_evento,
 };
