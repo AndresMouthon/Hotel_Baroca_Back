@@ -19,11 +19,26 @@ const getHabitacionesFiltradas = async (tipo_habitacion = "") => {
     return response;
 };
 
-const getHabitacionesByTipoAndHotel = async (tipo_habitacion = "", espacio_id = "") => {
+const getHabitacionesByTipoAndHotel = async (filtro = {}) => {
+    const {tipo_habitacion, espacio_id} = filtro;
     const habitacionesByTipoAndHotel = await Habitacion.findAll({
         where: {
             [Op.and]: [
                 { tipo_habitacion },
+                { espacio_id },
+                {disponibilidad: "Disponible"}
+            ]
+        }
+    });
+    return habitacionesByTipoAndHotel;
+};
+
+const getHabitacionesByPisoAndHotel = async (filtro = {}) => {
+    const {piso, espacio_id} = filtro;
+    const habitacionesByTipoAndHotel = await Habitacion.findAll({
+        where: {
+            [Op.and]: [
+                { piso },
                 { espacio_id },
                 {disponibilidad: "Disponible"}
             ]
@@ -58,6 +73,7 @@ module.exports = {
     getHabitacionById,
     getHabitacionesFiltradas,
     getHabitacionesByTipoAndHotel,
+    getHabitacionesByPisoAndHotel,
     postCrearHabitacion,
     putActualizarHabitacion,
     deleteEliminarHabitacion,
