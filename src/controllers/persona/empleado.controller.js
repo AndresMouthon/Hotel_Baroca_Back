@@ -10,20 +10,20 @@ const getTodosLosEmpleados = async () => {
 
 const getEmpleadoByDocumento = async (documento = "") => {
     const empleado = await Empleado.findOne({
-        where: { documento_usuario: documento },
+        where: { documento },
     });
     return empleado;
 };
 
 const postCrearEmpleado = async (persona = {}) => {
     const { documento, nombres, apellidos, genero, fecha_nacimiento } = persona;
-    const nuevoEmpleado = await Empleado.create({ documento_usuario: documento, nombres, apellidos, genero, fecha_nacimiento });
+    const nuevoEmpleado = await Empleado.create({ documento, nombres, apellidos, genero, fecha_nacimiento });
     return nuevoEmpleado;
 };
 
 const putActualizarEmpleado = async (empleado = {}) => {
     const { documento, nombres, apellidos, genero, fecha_nacimiento } = empleado;
-    const empleadoActualizado = await Empleado.update({ nombres, apellidos, genero, fecha_nacimiento }, { where: { documento_usuario: documento } });
+    const empleadoActualizado = await Empleado.update({ nombres, apellidos, genero, fecha_nacimiento }, { where: { documento } });
     if (empleadoActualizado.length > 0) {
         return empleado;
     } else {
@@ -32,7 +32,7 @@ const putActualizarEmpleado = async (empleado = {}) => {
 };
 
 const deleteEliminarEmpleado = async (documento = "") => {
-    Empleado.destroy({ where: { documento_usuario: documento } });
+    Empleado.destroy({ where: { documento } });
     await deleteEliminarUsuario(documento);
     return "Empleado eliminado";
 };
