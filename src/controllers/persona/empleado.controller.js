@@ -1,5 +1,7 @@
 const { Empleado } = require("../../models/auth/Empleado.model");
-// const {saveEmpleado}
+const {
+    deleteEliminarUsuario,
+} = require("../../controllers/persona/usuario.controller");
 
 const getTodosLosEmpleados = async () => {
     const empleados = await Empleado.findAll();
@@ -29,8 +31,9 @@ const putActualizarEmpleado = async (empleado = {}) => {
     };
 };
 
-const deleteEliminarEmpleado = async (usuario_id = "") => {
-    Empleado.destroy({ where: { usuario_id } });
+const deleteEliminarEmpleado = async (documento = "") => {
+    Empleado.destroy({ where: { documento_usuario: documento } });
+    await deleteEliminarUsuario(documento);
     return "Empleado eliminado";
 };
 

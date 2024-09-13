@@ -1,9 +1,10 @@
 const ruta = require("express").Router();
 const {
     getTodosLosEmpleados,
-    getEmpleadoById,
+    getEmpleadoByDocumento,
     putActualizarEmpleado,
     deleteEliminarEmpleado,
+    postCrearEmpleado,
 } = require("../../controllers/persona/empleado.controller");
 const {
     postCrearUsuario,
@@ -52,10 +53,12 @@ ruta.post("/registrar-empleado",
     validacionDeParametros,
     verificarDocumentoEmpleado,
     async (req, res) => {
-        const empleado = await postCrearUsuario(req.body);
+        console.log(req.body);
+        await postCrearUsuario(req.body);
+        await postCrearEmpleado(req.body);
         res.status(201).json({
             status: true,
-            message: empleado,
+            message: "Persona registrada",
         });
     }
 );
@@ -73,12 +76,12 @@ ruta.put("/actualizar-empleado",
     }
 );
 
-ruta.delete("/eliminar-empleado/:usuario_id",
+ruta.delete("/eliminar-empleado/:documento",
     validacionDeParametros,
     verificarDocumentoEmpleado,
     async (req, res) => {
         try {
-            const response = await deleteEliminarEmpleado(req.params.usuario_id);
+            const response = await deleteEliminarEmpleado(req.params.documento);
             res.status(200).json({ mensaje: response });
         } catch (error) {
             res.status(400).json({ mensaje: "La peticion fallo", error });

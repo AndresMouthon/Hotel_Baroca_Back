@@ -1,5 +1,4 @@
 const { getEmpleadoByDocumento } = require("../../controllers/persona/empleado.controller");
-const { getUsuarioByDocumento } = require("../../controllers/persona/usuario.controller");
 
 const verificarDocumentoEmpleado = async (req, res, next) => {
     try {
