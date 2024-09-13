@@ -11,7 +11,9 @@ module.exports = {
         capacidad_habitacion: 1,
         precio_habitacion: "120000",
         tipo_habitacion: "Estandar",
-        disponibilidad: "Disponible"
+        disponibilidad: "Disponible",
+        piso: 2,
+        espacio_id: 1,
       },
       {
         nombre_habitacion: "Estandar Doble",
@@ -20,7 +22,9 @@ module.exports = {
         capacidad_habitacion: 2,
         precio_habitacion: "150000",
         tipo_habitacion: "Estandar",
-        disponibilidad: "Disponible"
+        disponibilidad: "Disponible",
+        piso: 2,
+        espacio_id: 1,
       },
       {
         nombre_habitacion: "Estandar con Vista",
@@ -29,7 +33,9 @@ module.exports = {
         capacidad_habitacion: 2,
         precio_habitacion: "170000",
         tipo_habitacion: "Estandar",
-        disponibilidad: "Disponible"
+        disponibilidad: "Disponible",
+        piso: 2,
+        espacio_id: 1,
       },
       {
         nombre_habitacion: "Estandar Familiar",
@@ -38,7 +44,9 @@ module.exports = {
         capacidad_habitacion: 3,
         precio_habitacion: "200000",
         tipo_habitacion: "Estandar",
-        disponibilidad: "Disponible"
+        disponibilidad: "Disponible",
+        piso: 2,
+        espacio_id: 1,
       },
       {
         nombre_habitacion: "Estandar Premium",
@@ -47,7 +55,9 @@ module.exports = {
         capacidad_habitacion: 2,
         precio_habitacion: "190000",
         tipo_habitacion: "Estandar",
-        disponibilidad: "Disponible"
+        disponibilidad: "Disponible",
+        piso: 2,
+        espacio_id: 1,
       },
       // Habitaciones dobles
       {
@@ -57,7 +67,9 @@ module.exports = {
         capacidad_habitacion: 2,
         precio_habitacion: "250000",
         tipo_habitacion: "Doble",
-        disponibilidad: "Disponible"
+        disponibilidad: "Disponible",
+        piso: 2,
+        espacio_id: 1,
       },
       {
         nombre_habitacion: "Doble Ejecutiva",
@@ -66,7 +78,9 @@ module.exports = {
         capacidad_habitacion: 2,
         precio_habitacion: "220000",
         tipo_habitacion: "Doble",
-        disponibilidad: "Disponible"
+        disponibilidad: "Disponible",
+        piso: 2,
+        espacio_id: 1,
       },
       {
         nombre_habitacion: "Doble con Balcón",
@@ -75,7 +89,9 @@ module.exports = {
         capacidad_habitacion: 2,
         precio_habitacion: "210000",
         tipo_habitacion: "Doble",
-        disponibilidad: "Disponible"
+        disponibilidad: "Disponible",
+        piso: 2,
+        espacio_id: 1,
       },
       {
         nombre_habitacion: "Doble Familiar",
@@ -84,7 +100,9 @@ module.exports = {
         capacidad_habitacion: 3,
         precio_habitacion: "230000",
         tipo_habitacion: "Doble",
-        disponibilidad: "Disponible"
+        disponibilidad: "Disponible",
+        piso: 1,
+        espacio_id: 2,
       },
       {
         nombre_habitacion: "Doble Standard",
@@ -93,7 +111,9 @@ module.exports = {
         capacidad_habitacion: 2,
         precio_habitacion: "180000",
         tipo_habitacion: "Doble",
-        disponibilidad: "Disponible"
+        disponibilidad: "Disponible",
+        piso: 1,
+        espacio_id: 2,
       },
       // Habitaciones triples
       {
@@ -103,7 +123,9 @@ module.exports = {
         capacidad_habitacion: 3,
         precio_habitacion: "270000",
         tipo_habitacion: "Triple",
-        disponibilidad: "Disponible"
+        disponibilidad: "Disponible",
+        piso: 1,
+        espacio_id: 2,
       },
       {
         nombre_habitacion: "Triple Familiar",
@@ -112,7 +134,9 @@ module.exports = {
         capacidad_habitacion: 3,
         precio_habitacion: "230000",
         tipo_habitacion: "Triple",
-        disponibilidad: "Disponible"
+        disponibilidad: "Disponible",
+        piso: 1,
+        espacio_id: 2,
       },
       {
         nombre_habitacion: "Triple Ejecutiva",
@@ -121,7 +145,9 @@ module.exports = {
         capacidad_habitacion: 3,
         precio_habitacion: "250000",
         tipo_habitacion: "Triple",
-        disponibilidad: "Disponible"
+        disponibilidad: "Disponible",
+        piso: 1,
+        espacio_id: 2,
       },
       {
         nombre_habitacion: "Triple con Vista",
@@ -130,7 +156,9 @@ module.exports = {
         capacidad_habitacion: 3,
         precio_habitacion: "240000",
         tipo_habitacion: "Triple",
-        disponibilidad: "Disponible"
+        disponibilidad: "Disponible",
+        piso: 1,
+        espacio_id: 2,
       },
       {
         nombre_habitacion: "Triple Premium",
@@ -139,7 +167,9 @@ module.exports = {
         capacidad_habitacion: 3,
         precio_habitacion: "260000",
         tipo_habitacion: "Triple",
-        disponibilidad: "Disponible"
+        disponibilidad: "Disponible",
+        piso: 1,
+        espacio_id: 2,
       },
     ], {});
   },

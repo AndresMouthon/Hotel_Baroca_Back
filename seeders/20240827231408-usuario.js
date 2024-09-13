@@ -10,6 +10,11 @@ module.exports = {
         usuario: 'manprosed@gmail.com',
         password: await hashPassword('123456'),
         rol_id: 1,
+      },
+      {
+        usuario: 'mancotroy@gmail.com',
+        password: await hashPassword('123456'),
+        rol_id: 1,
       }
     ], {});
   },

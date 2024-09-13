@@ -1,4 +1,5 @@
 const { Model, DataTypes, Sequelize } = require("sequelize");
+const { Espacio } = require("../espacio/espacio.model");
 const { sequelize } = require("../../../config/sequelize.config");
 
 class Habitacion extends Model { };
@@ -33,11 +34,23 @@ Habitacion.init({
         type: DataTypes.ENUM('Estandar', 'Doble', 'Triple'),
         allowNull: false,
     },
+    piso: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    },
     disponibilidad: {
         type: DataTypes.ENUM('Disponible', 'No disponible'),
         allowNull: false,
         defaultValue: "Disponible"
-        
+
+    },
+    espacio_id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: Espacio,
+            key: "id",
+        },
     },
     created_at: {
         type: DataTypes.DATE,
@@ -55,6 +68,9 @@ Habitacion.init({
     tableName: "habitaciones",
     timestamps: false,
 });
+
+Espacio.hasMany(Habitacion, { foreignKey: "habitacion_id" });
+Habitacion.belongsTo(Espacio, { foreignKey: "habitacion_id" });
 
 module.exports = {
     Habitacion,

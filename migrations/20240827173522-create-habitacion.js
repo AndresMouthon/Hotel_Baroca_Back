@@ -32,10 +32,18 @@ module.exports = {
         type: Sequelize.ENUM("Estandar", "Doble", "Triple"),
         allowNull: false,
       },
+      piso: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
       disponibilidad: {
         type: Sequelize.ENUM("Disponible", "No disponible"),
         allowNull: false,
         defaultValue: "Disponible"
+      },
+      espacio_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
       },
       created_at: {
         type: Sequelize.DATE,

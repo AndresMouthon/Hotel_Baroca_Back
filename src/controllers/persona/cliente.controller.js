@@ -20,8 +20,8 @@ const postCrearCliente = async (cliente = {}) => {
 
 const putActualizarCliente = async (cliente = {}) => {
     const { nombres, apellidos, tipo_documento, documento, pais, departamento, ciudad, direccion, telefono, email, fecha_nacimiento } = cliente;
-    const nuevoCliente = await Cliente.update({ nombres, apellidos, tipo_documento, documento, pais, departamento, ciudad, direccion, telefono, email, fecha_nacimiento }, { where: { documento } });
-    if (nuevoCliente.length > 0) {
+    const clienteActualizado = await Cliente.update({ nombres, apellidos, tipo_documento, documento, pais, departamento, ciudad, direccion, telefono, email, fecha_nacimiento }, { where: { documento } });
+    if (clienteActualizado.length > 0) {
         return cliente;
     } else {
         return null;
