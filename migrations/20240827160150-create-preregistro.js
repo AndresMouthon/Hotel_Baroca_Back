@@ -24,6 +24,14 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
+      observacion: {
+        type: Sequelize.STRING(200),
+        allowNull: true,
+      },
+      estado: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
       created_at: {
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),

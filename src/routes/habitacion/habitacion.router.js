@@ -6,6 +6,7 @@ const {
     postCrearHabitacion,
     putActualizarHabitacion,
     deleteEliminarHabitacion,
+    getHabitacionesByPisoAndHotel,
 } = require("../../controllers/habitacion/habitacion.controller");
 const { validacionDeParametros } = require("../../middlewares/validaciones.middleware");
 const { verificarIdHabitacion } = require("../../middlewares/habitacion/habitacion.middleware");
@@ -33,7 +34,7 @@ ruta.get("/todos-los-habitaciones-filtradas",
     }
 );
 
-ruta.get("/todos-las-habitaciones-filtradas-por-hotel-tipo",
+ruta.get("/todas-las-habitaciones-filtradas-por-hotel-tipo",
     async (req, res) => {
         try {
             const habitaciones = await getHabitacionesByTipoAndHotel(req.body);
@@ -44,10 +45,10 @@ ruta.get("/todos-las-habitaciones-filtradas-por-hotel-tipo",
     }
 );
 
-ruta.get("/todos-las-habitaciones-filtradas-por-hotel-piso",
+ruta.get("/todas-las-habitaciones-filtradas-por-hotel-piso",
     async (req, res) => {
         try {
-            const habitaciones = await getHabitacionesByTipoAndHotel(req.body);
+            const habitaciones = await getHabitacionesByPisoAndHotel(req.body);
             res.status(200).json(habitaciones);
         } catch (error) {
             res.status(400).json({ mensaje: "La peticion fallo", error });

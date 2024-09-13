@@ -1,15 +1,15 @@
 const { Preregistro } = require("../../models/registro/Preregistro.model");
-const { postCrearDetallePreregistro } = require("../../controllers/registro/detalle-preregistro.controller");
 const { DetallePreregistro } = require("../../models/registro/DetallePreregistro.model");
 
 const postCrearRegistro = async (preregistros = {}) => {
     try {
-        const { fecha_ingreso, tipo_habitacion, cliente_id, espacio_id } = preregistros;
+        const { fecha_ingreso, tipo_habitacion, cliente_id, espacio_id, observacion } = preregistros;
         const preregistro = await Preregistro.create({
             fecha_ingreso,
             tipo_habitacion,
             cliente_id,
             espacio_id,
+            observacion,
         });
         return preregistro;
     } catch (error) {

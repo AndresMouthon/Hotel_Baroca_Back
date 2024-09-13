@@ -35,6 +35,15 @@ Preregistro.init({
             key: "id",
         },
     },
+    observacion: {
+        type: DataTypes.STRING(200),
+        allowNull: true,
+    },
+    estado: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        defaultValue: "En proceso",
+    },
     created_at: {
         type: DataTypes.DATE,
         defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
@@ -52,11 +61,11 @@ Preregistro.init({
     timestamps: false,
 });
 
-Cliente.hasMany(Preregistro, {foreignKey: "cliente_id"});
-Preregistro.belongsTo(Cliente, {foreignKey: "cliente_id"});
+Cliente.hasMany(Preregistro, { foreignKey: "cliente_id" });
+Preregistro.belongsTo(Cliente, { foreignKey: "cliente_id" });
 
-Espacio.hasMany(Preregistro, {foreignKey: "espacio_id"});
-Preregistro.belongsTo(Espacio, {foreignKey: "espacio_id"});
+Espacio.hasMany(Preregistro, { foreignKey: "espacio_id" });
+Preregistro.belongsTo(Espacio, { foreignKey: "espacio_id" });
 
 module.exports = {
     Preregistro
