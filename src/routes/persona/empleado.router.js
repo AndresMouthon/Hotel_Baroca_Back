@@ -83,7 +83,10 @@ ruta.delete("/eliminar-empleado/:documento",
     async (req, res) => {
         try {
             const response = await deleteEliminarEmpleado(req.params.documento);
-            res.status(200).json({ mensaje: response });
+            res.status(200).json({
+                status: true,
+                mensaje: response
+            });
         } catch (error) {
             res.status(400).json({ mensaje: "La peticion fallo", error });
         };
