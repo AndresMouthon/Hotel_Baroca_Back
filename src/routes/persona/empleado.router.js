@@ -53,7 +53,6 @@ ruta.post("/registrar-empleado",
     validacionDeParametros,
     verificarDocumentoEmpleado,
     async (req, res) => {
-        console.log(req.body);
         await postCrearUsuario(req.body);
         await postCrearEmpleado(req.body);
         res.status(201).json({
