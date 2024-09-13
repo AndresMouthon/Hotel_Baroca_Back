@@ -10,11 +10,6 @@ module.exports = {
         documento: "1003059060",
         password: await hashPassword('123456'),
         rol_id: 1,
-      },
-      {
-        documento: "1063080464",
-        password: await hashPassword('123456'),
-        rol_id: 1,
       }
     ], {});
   },

@@ -36,7 +36,18 @@ ruta.get("/todos-los-habitaciones-filtradas",
 ruta.get("/todos-las-habitaciones-filtradas-por-hotel-tipo",
     async (req, res) => {
         try {
-            const habitaciones = await getHabitacionesByTipoAndHotel(req.body.tipo_habitacion);
+            const habitaciones = await getHabitacionesByTipoAndHotel(req.body);
+            res.status(200).json(habitaciones);
+        } catch (error) {
+            res.status(400).json({ mensaje: "La peticion fallo", error });
+        };
+    }
+);
+
+ruta.get("/todos-las-habitaciones-filtradas-por-hotel-piso",
+    async (req, res) => {
+        try {
+            const habitaciones = await getHabitacionesByTipoAndHotel(req.body);
             res.status(200).json(habitaciones);
         } catch (error) {
             res.status(400).json({ mensaje: "La peticion fallo", error });
