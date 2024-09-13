@@ -1,5 +1,9 @@
-const { where } = require("sequelize");
 const { Cliente } = require("../../models/persona/Cliente.model");
+
+const getTodosLosClientes = async () => {
+    const clientes = await Cliente.findAll();
+    return clientes;
+};
 
 const getClienteByCedula = async (documento = "") => {
     const cliente = await Cliente.findOne({
@@ -24,8 +28,15 @@ const putActualizarCliente = async (cliente = {}) => {
     };
 };
 
+const deleteEliminarCliente = async (id = "") => {
+    Cliente.destroy({ where: { id } });
+    return "Cliente eliminado";
+};
+
 module.exports = {
+    getTodosLosClientes,
     getClienteByCedula,
     postCrearCliente,
     putActualizarCliente,
+    deleteEliminarCliente,
 };
