@@ -5,13 +5,13 @@ const { Usuario } = require("./Usuario.model");
 class Empleado extends Model { };
 
 Empleado.init({
-    usuario_id: {
-        type: DataTypes.INTEGER,
+    documento_usuario: {
+        type: DataTypes.STRING(20),
         allowNull: false,
         primaryKey: true,
         references: {
             model: Usuario,
-            key: 'id'
+            key: 'documento'
         }
     },
     nombres: {
@@ -47,7 +47,7 @@ Empleado.init({
     timestamps: false,
 });
 
-Usuario.hasOne(Empleado, { foreignKey: 'usuario_id' });
-Empleado.belongsTo(Usuario, { foreignKey: 'usuario_id' });
+Usuario.hasOne(Empleado, { foreignKey: 'documento_usuario' });
+Empleado.belongsTo(Usuario, { foreignKey: 'documento_usuario' });
 
 module.exports = { Empleado };

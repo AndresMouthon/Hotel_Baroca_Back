@@ -1,20 +1,21 @@
 const { Empleado } = require("../../models/auth/Empleado.model");
+// const {saveEmpleado}
 
 const getTodosLosEmpleados = async () => {
     const empleados = await Empleado.findAll();
     return empleados;
 };
 
-const getEmpleadoById = async (id = "") => {
+const getEmpleadoByDocumento = async (documento = "") => {
     const empleado = await Empleado.findOne({
-        where: { usuario_id: id },
+        where: { documento_usuario: documento },
     });
     return empleado;
 };
 
-const postCrearEmpleado = async (empleado = {}) => {
-    const { usuario_id, nombres, apellidos, genero, fecha_nacimiento } = empleado;
-    const nuevoEmpleado = await Empleado.create({ usuario_id, nombres, apellidos, genero, fecha_nacimiento });
+const postCrearEmpleado = async (persona = {}) => {
+    const { documento, nombres, apellidos, genero, fecha_nacimiento } = persona;
+    const nuevoEmpleado = await Empleado.create({ documento_usuario: documento, nombres, apellidos, genero, fecha_nacimiento });
     return nuevoEmpleado;
 };
 
@@ -35,7 +36,7 @@ const deleteEliminarEmpleado = async (usuario_id = "") => {
 
 module.exports = {
     getTodosLosEmpleados,
-    getEmpleadoById,
+    getEmpleadoByDocumento,
     postCrearEmpleado,
     putActualizarEmpleado,
     deleteEliminarEmpleado,

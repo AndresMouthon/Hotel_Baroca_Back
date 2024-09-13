@@ -1,9 +1,9 @@
 const { body } = require("express-validator");
 
 const validarBodyEmpleado = [
-    body("usuario_id")
+    body("documento")
         .exists()
-        .withMessage("El id del usuario es requerido"),
+        .withMessage("El documento del empleado es requerido"),
     body("nombres")
         .exists()
         .withMessage("El nombre es requerido")
@@ -30,6 +30,9 @@ const validarBodyEmpleado = [
     body("fecha_nacimiento")
         .exists()
         .withMessage("La fecha de nacimiento es requerida"),
+    body("rol_id")
+        .exists()
+        .withMessage("El rol es requerido"),
 ];
 
 module.exports = {

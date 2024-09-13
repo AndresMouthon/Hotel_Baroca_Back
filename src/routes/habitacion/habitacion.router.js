@@ -4,6 +4,7 @@ const {
     getHabitacionesFiltradas,
     postCrearHabitacion,
     putActualizarHabitacion,
+    deleteEliminarHabitacion,
 } = require("../../controllers/habitacion/habitacion.controller");
 const { validacionDeParametros } = require("../../middlewares/validaciones.middleware");
 const { verificarIdHabitacion } = require("../../middlewares/habitacion/habitacion.middleware");
@@ -48,26 +49,26 @@ ruta.put("/actualizar-habitacion/:id",
     validacionDeParametros,
     verificarIdHabitacion,
     async (req, res) => {
-        const cliente = await putActualizarHabitacion(req.body);
+        const habitacion = await putActualizarHabitacion(req.params.id, req.body);
         res.status(200).json({
             status: true,
-            message: cliente,
+            message: habitacion,
         });
     }
 );
 
-// ruta.delete("/eliminar-cliente/:documento",
-//     validacionDeParametros,
-//     verificarDocumento,
-//     async (req, res) => {
-//         try {
-//             const response = await deleteEliminarCliente(req.params.documento);
-//             res.status(200).json({ mensaje: response });
-//         } catch (error) {
-//             res.status(400).json({ mensaje: "La peticion fallo", error });
-//         };
-//     }
-// );
+ruta.delete("/eliminar-habitacion/:id",
+    validacionDeParametros,
+    verificarIdHabitacion,
+    async (req, res) => {
+        try {
+            const response = await deleteEliminarHabitacion(req.params.id);
+            res.status(200).json({ mensaje: response });
+        } catch (error) {
+            res.status(400).json({ mensaje: "La peticion fallo", error });
+        };
+    }
+);
 
 module.exports = {
     indice: "/habitacion",

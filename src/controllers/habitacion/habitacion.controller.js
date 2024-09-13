@@ -26,7 +26,7 @@ const postCrearHabitacion = async (habitacion = {}) => {
 
 const putActualizarHabitacion = async (id = "", habitacion = {}) => {
     const { nombre_habitacion, descripcion_habitacion, numero_habitacion, capacidad_habitacion, precio_habitacion, tipo_habitacion, piso, direccion, disponibilidad, espacio_id } = habitacion;
-    const habitacionActualizada = await Empleado.update({ nombre_habitacion, descripcion_habitacion, numero_habitacion, capacidad_habitacion, precio_habitacion, tipo_habitacion, piso, direccion, disponibilidad, espacio_id }, { where: { id } });
+    const habitacionActualizada = await Habitacion.update({ nombre_habitacion, descripcion_habitacion, numero_habitacion, capacidad_habitacion, precio_habitacion, tipo_habitacion, piso, direccion, disponibilidad, espacio_id }, { where: { id } });
     if (habitacionActualizada.length > 0) {
         return habitacion;
     } else {
@@ -34,10 +34,10 @@ const putActualizarHabitacion = async (id = "", habitacion = {}) => {
     };
 };
 
-// const deleteEliminarEmpleado = async (usuario_id = "") => {
-//     Empleado.destroy({ where: { usuario_id } });
-//     return "Empleado eliminado";
-// };
+const deleteEliminarHabitacion = async (id = "") => {
+    Habitacion.destroy({ where: { id } });
+    return "Habitacion eliminada";
+};
 
 module.exports = {
     getTodasLasHabitaciones,
@@ -45,4 +45,5 @@ module.exports = {
     getHabitacionesFiltradas,
     postCrearHabitacion,
     putActualizarHabitacion,
+    deleteEliminarHabitacion,
 }

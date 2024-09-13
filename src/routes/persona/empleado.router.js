@@ -2,12 +2,14 @@ const ruta = require("express").Router();
 const {
     getTodosLosEmpleados,
     getEmpleadoById,
-    postCrearEmpleado,
     putActualizarEmpleado,
     deleteEliminarEmpleado,
 } = require("../../controllers/persona/empleado.controller");
+const {
+    postCrearUsuario,
+} = require("../../controllers/persona/usuario.controller");
 const { validacionDeParametros } = require("../../middlewares/validaciones.middleware");
-const { verificarIdEmpleado } = require("../../middlewares/persona/empleado.middleware");
+const { verificarDocumentoEmpleado } = require("../../middlewares/persona/empleado.middleware");
 const { validarBodyEmpleado } = require("../../schemas/persona/empleado.schema");
 
 ruta.get("/buscar-empleados",
@@ -48,9 +50,9 @@ ruta.get("/buscar-empleado/:id",
 ruta.post("/registrar-empleado",
     validarBodyEmpleado,
     validacionDeParametros,
-    verificarIdEmpleado,
+    verificarDocumentoEmpleado,
     async (req, res) => {
-        const empleado = await postCrearEmpleado(req.body);
+        const empleado = await postCrearUsuario(req.body);
         res.status(201).json({
             status: true,
             message: empleado,
@@ -61,7 +63,7 @@ ruta.post("/registrar-empleado",
 ruta.put("/actualizar-empleado",
     validarBodyEmpleado,
     validacionDeParametros,
-    verificarIdEmpleado,
+    verificarDocumentoEmpleado,
     async (req, res) => {
         const empleado = await putActualizarEmpleado(req.body);
         res.status(200).json({
@@ -73,7 +75,7 @@ ruta.put("/actualizar-empleado",
 
 ruta.delete("/eliminar-empleado/:usuario_id",
     validacionDeParametros,
-    verificarIdEmpleado,
+    verificarDocumentoEmpleado,
     async (req, res) => {
         try {
             const response = await deleteEliminarEmpleado(req.params.usuario_id);
