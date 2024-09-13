@@ -22,8 +22,8 @@ const postCrearEmpleado = async (persona = {}) => {
 };
 
 const putActualizarEmpleado = async (empleado = {}) => {
-    const { usuario_id, nombres, apellidos, genero, fecha_nacimiento } = empleado;
-    const empleadoActualizado = await Empleado.update({ nombres, apellidos, genero, fecha_nacimiento }, { where: { usuario_id } });
+    const { documento, nombres, apellidos, genero, fecha_nacimiento } = empleado;
+    const empleadoActualizado = await Empleado.update({ nombres, apellidos, genero, fecha_nacimiento }, { where: { documento_usuario: documento } });
     if (empleadoActualizado.length > 0) {
         return empleado;
     } else {

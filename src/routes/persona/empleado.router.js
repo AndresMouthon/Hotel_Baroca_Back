@@ -8,6 +8,7 @@ const {
 } = require("../../controllers/persona/empleado.controller");
 const {
     postCrearUsuario,
+    putActualizarUsuario,
 } = require("../../controllers/persona/usuario.controller");
 const { validacionDeParametros } = require("../../middlewares/validaciones.middleware");
 const { verificarDocumentoEmpleado } = require("../../middlewares/persona/empleado.middleware");
@@ -27,10 +28,10 @@ ruta.get("/buscar-empleados",
     }
 );
 
-ruta.get("/buscar-empleado/:id",
+ruta.get("/buscar-empleado/:documento",
     async (req, res) => {
         try {
-            const empleado = await getEmpleadoById(req.params.id);
+            const empleado = await getEmpleadoByDocumento(req.params.documento);
             if (empleado) {
                 res.status(200).json({
                     status: true,
@@ -67,7 +68,8 @@ ruta.put("/actualizar-empleado",
     validacionDeParametros,
     verificarDocumentoEmpleado,
     async (req, res) => {
-        const empleado = await putActualizarEmpleado(req.body);
+        await putActualizarUsuario(req.body)
+        await putActualizarEmpleado(req.body);
         res.status(200).json({
             status: true,
             message: empleado,

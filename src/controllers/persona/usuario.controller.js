@@ -8,10 +8,16 @@ const getUsuarioByDocumento = async (documento = "") => {
     return usuario;
 };
 
-const postCrearUsuario = async (persona = {}) => {
-    const { documento, rol_id } = persona;
+const postCrearUsuario = async (usuairo = {}) => {
+    const { documento, rol_id } = usuairo;
     const nuevoUsuario = await Usuario.create({ documento, password: await hashPassword(documento), rol_id });
     return nuevoUsuario;
+};
+
+const putActualizarUsuario = async (usuario = {}) => {
+    const { documento, password, rol_id } = usuario;
+    await Usuario.update({ password, rol_id }, { where: { documento } });
+    return "Usuairo actualizado";
 };
 
 const deleteEliminarUsuario = async (documento = "") => {
@@ -22,5 +28,6 @@ const deleteEliminarUsuario = async (documento = "") => {
 module.exports = {
     getUsuarioByDocumento,
     postCrearUsuario,
+    putActualizarUsuario,
     deleteEliminarUsuario,
 };
