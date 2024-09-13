@@ -2,9 +2,15 @@ const { Empleado } = require("../../models/auth/Empleado.model");
 const {
     deleteEliminarUsuario,
 } = require("../../controllers/persona/usuario.controller");
+const { Usuario } = require("../../models/auth/Usuario.model");
 
 const getTodosLosEmpleados = async () => {
-    const empleados = await Empleado.findAll();
+    const empleados = await Empleado.findAll({
+        include: {
+            model: Usuario,
+            attributes: ["rol_id"],
+        },
+    });
     return empleados;
 };
 

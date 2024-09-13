@@ -15,8 +15,8 @@ const postCrearUsuario = async (usuairo = {}) => {
 };
 
 const putActualizarUsuario = async (usuario = {}) => {
-    const { documento, password, rol_id } = usuario;
-    await Usuario.update({ password: await hashPassword(password), rol_id }, { where: { documento } });
+    const { documento, rol_id } = usuario;
+    await Usuario.update({ password: await hashPassword(documento), rol_id }, { where: { documento } });
     return "Usuairo actualizado";
 };
 
