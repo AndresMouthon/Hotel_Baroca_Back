@@ -1,5 +1,6 @@
 const { Habitacion } = require("../../models/habitacion/Habitacion.model");
 const { queryFiltrarHabitaciones } = require("../../repositories/habitacion/habitacion.repositorie");
+const { Op } = require('sequelize');
 
 const getTodasLasHabitaciones = async () => {
     const habitaciones = await Habitacion.findAll();
@@ -16,6 +17,19 @@ const getHabitacionById = async (id = "") => {
 const getHabitacionesFiltradas = async (tipo_habitacion = "") => {
     const response = await queryFiltrarHabitaciones(tipo_habitacion);
     return response;
+};
+
+const getHabitacionesByTipoAndHotel = async (tipo_habitacion = "", espacio_id = "") => {
+    const habitacionesByTipoAndHotel = await Habitacion.findAll({
+        where: {
+            [Op.and]: [
+                { tipo_habitacion },
+                { espacio_id },
+                {disponibilidad: "Disponible"}
+            ]
+        }
+    });
+    return habitacionesByTipoAndHotel;
 };
 
 const postCrearHabitacion = async (habitacion = {}) => {
@@ -43,6 +57,7 @@ module.exports = {
     getTodasLasHabitaciones,
     getHabitacionById,
     getHabitacionesFiltradas,
+    getHabitacionesByTipoAndHotel,
     postCrearHabitacion,
     putActualizarHabitacion,
     deleteEliminarHabitacion,
