@@ -2,8 +2,11 @@ const { Habitacion } = require("../../models/habitacion/Habitacion.model");
 const { queryFiltrarHabitaciones } = require("../../repositories/habitacion/habitacion.repositorie");
 const { Op } = require('sequelize');
 
-const getTodasLasHabitaciones = async () => {
-    const habitaciones = await Habitacion.findAll();
+const getTodasLasHabitacionesByHotel = async (espacio_id = "") => {
+    const habitaciones = await Habitacion.findAll({
+        where: { espacio_id },
+        order: [["piso", "ASC"]],
+    });
     return habitaciones;
 };
 
@@ -69,7 +72,7 @@ const deleteEliminarHabitacion = async (id = "") => {
 };
 
 module.exports = {
-    getTodasLasHabitaciones,
+    getTodasLasHabitacionesByHotel,
     getHabitacionById,
     getHabitacionesFiltradas,
     getHabitacionesByTipoAndHotel,

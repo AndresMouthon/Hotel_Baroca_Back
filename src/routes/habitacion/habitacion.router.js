@@ -1,6 +1,6 @@
 const ruta = require("express").Router();
 const {
-    getTodasLasHabitaciones,
+    getTodasLasHabitacionesByHotel,
     getHabitacionesFiltradas,
     getHabitacionesByTipoAndHotel,
     postCrearHabitacion,
@@ -12,10 +12,10 @@ const { validacionDeParametros } = require("../../middlewares/validaciones.middl
 const { verificarIdHabitacion } = require("../../middlewares/habitacion/habitacion.middleware");
 const { validarBodyHabitacion } = require("../../schemas/habitacion/habitacion.schema");
 
-ruta.get("/todas-las-habitaciones",
+ruta.get("/todas-las-habitaciones-por-hotel/:espacio_id",
     async (req, res) => {
         try {
-            const habitaciones = await getTodasLasHabitaciones();
+            const habitaciones = await getTodasLasHabitacionesByHotel(req.params.espacio_id);
             res.status(200).json(habitaciones);
         } catch (error) {
             res.status(400).json({ mensaje: "La peticion fallo", error });
