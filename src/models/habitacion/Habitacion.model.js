@@ -52,6 +52,15 @@ Habitacion.init({
             key: "id",
         },
     },
+    estado: {
+        type: DataTypes.ENUM("Limpia", "Sucia"),
+        allowNull: false,
+        defaultValue: "Limpia"
+    },
+    ventana: {
+        type: DataTypes.ENUM("Si", "No"),
+        allowNull: false,
+    },
     created_at: {
         type: DataTypes.DATE,
         defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),

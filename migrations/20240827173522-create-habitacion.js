@@ -45,6 +45,15 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
+      estado: {
+        type: Sequelize.ENUM("Limpia", "Sucia"),
+        allowNull: false,
+        defaultValue: "Limpia"
+      },
+      ventana: {
+        type: Sequelize.ENUM("Si", "No"),
+        allowNull: false,
+      },
       created_at: {
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),

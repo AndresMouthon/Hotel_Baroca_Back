@@ -5,10 +5,15 @@ const { Rol } = require("./Rol.model");
 class Usuario extends Model { };
 
 Usuario.init({
+    id: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        primaryKey: true,
+        autoIncrement: true,
+    },
     documento: {
         type: DataTypes.STRING(20),
         allowNull: false,
-        primaryKey: true,
     },
     password: {
         type: DataTypes.STRING,

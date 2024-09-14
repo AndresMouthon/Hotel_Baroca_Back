@@ -6,7 +6,7 @@ const verificarDocumentoEmpleado = async (req, res, next) => {
         const empleadoExistente = await getEmpleadoByDocumento(documento);
         if (empleadoExistente && req.path.includes('/registrar-empleado')) {
             return res.json({ mensaje: "El empleado ya tiene un rol asignado" });
-        } else if (!empleadoExistente && (req.path.includes('/actualizar-empleado') || req.path.includes('/eliminar-empleado'))) {
+        } else if (!empleadoExistente && (req.path.includes('/eliminar-empleado'))) {
             return res.json({ mensaje: "El empleado no existe" });
         };
         next();

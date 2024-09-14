@@ -20,13 +20,13 @@ const getHabitacionesFiltradas = async (tipo_habitacion = "") => {
 };
 
 const getHabitacionesByTipoAndHotel = async (filtro = {}) => {
-    const {tipo_habitacion, espacio_id} = filtro;
+    const { tipo_habitacion, espacio_id } = filtro;
     const habitacionesByTipoAndHotel = await Habitacion.findAll({
         where: {
             [Op.and]: [
                 { tipo_habitacion },
                 { espacio_id },
-                {disponibilidad: "Disponible"}
+                { disponibilidad: "Disponible" }
             ]
         }
     });
@@ -34,13 +34,13 @@ const getHabitacionesByTipoAndHotel = async (filtro = {}) => {
 };
 
 const getHabitacionesByPisoAndHotel = async (filtro = {}) => {
-    const {piso, espacio_id} = filtro;
+    const { piso, espacio_id } = filtro;
     const habitacionesByTipoAndHotel = await Habitacion.findAll({
         where: {
             [Op.and]: [
                 { piso },
                 { espacio_id },
-                {disponibilidad: "Disponible"}
+                { disponibilidad: "Disponible" }
             ]
         }
     });
@@ -48,14 +48,14 @@ const getHabitacionesByPisoAndHotel = async (filtro = {}) => {
 };
 
 const postCrearHabitacion = async (habitacion = {}) => {
-    const { nombre_habitacion, descripcion_habitacion, numero_habitacion, capacidad_habitacion, precio_habitacion, tipo_habitacion, piso, direccion, espacio_id } = habitacion;
-    const nuevaHabitacion = await Habitacion.create({ nombre_habitacion, descripcion_habitacion, numero_habitacion, capacidad_habitacion, precio_habitacion, tipo_habitacion, piso, direccion, disponibilidad: "Disponible", espacio_id });
+    const { nombre_habitacion, descripcion_habitacion, numero_habitacion, capacidad_habitacion, precio_habitacion, tipo_habitacion, piso, direccion, espacio_id, ventana } = habitacion;
+    const nuevaHabitacion = await Habitacion.create({ nombre_habitacion, descripcion_habitacion, numero_habitacion, capacidad_habitacion, precio_habitacion, tipo_habitacion, piso, direccion, disponibilidad: "Disponible", espacio_id, ventana });
     return nuevaHabitacion;
 };
 
 const putActualizarHabitacion = async (id = "", habitacion = {}) => {
-    const { nombre_habitacion, descripcion_habitacion, numero_habitacion, capacidad_habitacion, precio_habitacion, tipo_habitacion, piso, direccion, disponibilidad, espacio_id } = habitacion;
-    const habitacionActualizada = await Habitacion.update({ nombre_habitacion, descripcion_habitacion, numero_habitacion, capacidad_habitacion, precio_habitacion, tipo_habitacion, piso, direccion, disponibilidad, espacio_id }, { where: { id } });
+    const { nombre_habitacion, descripcion_habitacion, numero_habitacion, capacidad_habitacion, precio_habitacion, tipo_habitacion, piso, direccion, disponibilidad, espacio_id, estado, ventana } = habitacion;
+    const habitacionActualizada = await Habitacion.update({ nombre_habitacion, descripcion_habitacion, numero_habitacion, capacidad_habitacion, precio_habitacion, tipo_habitacion, piso, direccion, disponibilidad, espacio_id, estado, ventana }, { where: { id } });
     if (habitacionActualizada.length > 0) {
         return habitacion;
     } else {

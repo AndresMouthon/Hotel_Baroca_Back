@@ -14,6 +14,7 @@ module.exports = {
         disponibilidad: "Disponible",
         piso: 2,
         espacio_id: 1,
+        ventana: "Si"
       },
       {
         nombre_habitacion: "Estandar Doble",
@@ -25,6 +26,7 @@ module.exports = {
         disponibilidad: "Disponible",
         piso: 2,
         espacio_id: 1,
+        ventana: "Si"
       },
       {
         nombre_habitacion: "Estandar con Vista",
@@ -36,6 +38,7 @@ module.exports = {
         disponibilidad: "Disponible",
         piso: 2,
         espacio_id: 1,
+        ventana: "Si"
       },
       {
         nombre_habitacion: "Estandar Familiar",
@@ -47,6 +50,7 @@ module.exports = {
         disponibilidad: "Disponible",
         piso: 2,
         espacio_id: 1,
+        ventana: "Si"
       },
       {
         nombre_habitacion: "Estandar Premium",
@@ -58,6 +62,7 @@ module.exports = {
         disponibilidad: "Disponible",
         piso: 2,
         espacio_id: 1,
+        ventana: "Si"
       },
       // Habitaciones dobles
       {
@@ -70,6 +75,7 @@ module.exports = {
         disponibilidad: "Disponible",
         piso: 2,
         espacio_id: 1,
+        ventana: "Si"
       },
       {
         nombre_habitacion: "Doble Ejecutiva",
@@ -81,6 +87,7 @@ module.exports = {
         disponibilidad: "Disponible",
         piso: 2,
         espacio_id: 1,
+        ventana: "Si"
       },
       {
         nombre_habitacion: "Doble con Balcón",
@@ -92,6 +99,7 @@ module.exports = {
         disponibilidad: "Disponible",
         piso: 2,
         espacio_id: 1,
+        ventana: "No"
       },
       {
         nombre_habitacion: "Doble Familiar",
@@ -103,10 +111,11 @@ module.exports = {
         disponibilidad: "Disponible",
         piso: 1,
         espacio_id: 2,
+        ventana: "No"
       },
       {
         nombre_habitacion: "Doble Standard",
-        descripcion_habitacion: "Habitación con cama doble, simple pero confortable para estancias cortas.",
+        descripcion_habitacion: "Habitación con cama doble, Nomple pero confortable para estancias cortas.",
         numero_habitacion: 304,
         capacidad_habitacion: 2,
         precio_habitacion: "180000",
@@ -114,6 +123,7 @@ module.exports = {
         disponibilidad: "Disponible",
         piso: 1,
         espacio_id: 2,
+        ventana: "No"
       },
       // Habitaciones triples
       {
@@ -126,6 +136,7 @@ module.exports = {
         disponibilidad: "Disponible",
         piso: 1,
         espacio_id: 2,
+        ventana: "No"
       },
       {
         nombre_habitacion: "Triple Familiar",
@@ -137,6 +148,7 @@ module.exports = {
         disponibilidad: "Disponible",
         piso: 1,
         espacio_id: 2,
+        ventana: "No"
       },
       {
         nombre_habitacion: "Triple Ejecutiva",
@@ -148,6 +160,7 @@ module.exports = {
         disponibilidad: "Disponible",
         piso: 1,
         espacio_id: 2,
+        ventana: "No"
       },
       {
         nombre_habitacion: "Triple con Vista",
@@ -159,6 +172,7 @@ module.exports = {
         disponibilidad: "Disponible",
         piso: 1,
         espacio_id: 2,
+        ventana: "No"
       },
       {
         nombre_habitacion: "Triple Premium",
@@ -170,6 +184,7 @@ module.exports = {
         disponibilidad: "Disponible",
         piso: 1,
         espacio_id: 2,
+        ventana: "No"
       },
     ], {});
   },

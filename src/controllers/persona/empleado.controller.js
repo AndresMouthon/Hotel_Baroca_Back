@@ -21,15 +21,15 @@ const getEmpleadoByDocumento = async (documento = "") => {
     return empleado;
 };
 
-const postCrearEmpleado = async (persona = {}) => {
+const postCrearEmpleado = async (persona = {}, usuario_id = "") => {
     const { documento, nombres, apellidos, genero, fecha_nacimiento } = persona;
-    const nuevoEmpleado = await Empleado.create({ documento, nombres, apellidos, genero, fecha_nacimiento });
+    const nuevoEmpleado = await Empleado.create({ usuario_id, documento, nombres, apellidos, genero, fecha_nacimiento });
     return nuevoEmpleado;
 };
 
 const putActualizarEmpleado = async (empleado = {}) => {
-    const { documento, nombres, apellidos, genero, fecha_nacimiento } = empleado;
-    const empleadoActualizado = await Empleado.update({ nombres, apellidos, genero, fecha_nacimiento }, { where: { documento } });
+    const { usuario_id, documento, nombres, apellidos, genero, fecha_nacimiento } = empleado;
+    const empleadoActualizado = await Empleado.update({ documento, nombres, apellidos, genero, fecha_nacimiento }, { where: { usuario_id } });
     if (empleadoActualizado.length > 0) {
         return empleado;
     } else {

@@ -54,8 +54,8 @@ ruta.post("/registrar-empleado",
     validacionDeParametros,
     verificarDocumentoEmpleado,
     async (req, res) => {
-        await postCrearUsuario(req.body);
-        await postCrearEmpleado(req.body);
+        const usuario = await postCrearUsuario(req.body);
+        await postCrearEmpleado(req.body, usuario.id);
         res.status(201).json({
             status: true,
             message: "Empleado registrado",
