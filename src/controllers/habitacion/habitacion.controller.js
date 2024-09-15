@@ -5,7 +5,7 @@ const { Op } = require('sequelize');
 const getTodasLasHabitacionesByHotel = async (espacio_id = "") => {
     const habitaciones = await Habitacion.findAll({
         where: { espacio_id },
-        order: [["piso", "ASC"]],
+        order: [["piso", "ASC"], ["numero_habitacion", "ASC"]],
     });
     return habitaciones;
 };
