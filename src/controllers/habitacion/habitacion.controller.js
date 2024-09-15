@@ -51,14 +51,14 @@ const getHabitacionesByPisoAndHotel = async (filtro = {}) => {
 };
 
 const postCrearHabitacion = async (habitacion = {}) => {
-    const { nombre_habitacion, descripcion_habitacion, numero_habitacion, capacidad_habitacion, precio_habitacion, tipo_habitacion, piso, direccion, espacio_id, ventana } = habitacion;
-    const nuevaHabitacion = await Habitacion.create({ nombre_habitacion, descripcion_habitacion, numero_habitacion, capacidad_habitacion, precio_habitacion, tipo_habitacion, piso, direccion, disponibilidad: "Disponible", espacio_id, ventana });
+    const { nombre_habitacion, descripcion_habitacion, numero_habitacion, capacidad_habitacion, precio_habitacion, tipo_habitacion, piso, espacio_id, ventana } = habitacion;
+    const nuevaHabitacion = await Habitacion.create({ nombre_habitacion, descripcion_habitacion, numero_habitacion, capacidad_habitacion, precio_habitacion, tipo_habitacion, piso, disponibilidad: "Disponible", espacio_id, ventana });
     return nuevaHabitacion;
 };
 
 const putActualizarHabitacion = async (id = "", habitacion = {}) => {
-    const { nombre_habitacion, descripcion_habitacion, numero_habitacion, capacidad_habitacion, precio_habitacion, tipo_habitacion, piso, direccion, disponibilidad, espacio_id, estado, ventana } = habitacion;
-    const habitacionActualizada = await Habitacion.update({ nombre_habitacion, descripcion_habitacion, numero_habitacion, capacidad_habitacion, precio_habitacion, tipo_habitacion, piso, direccion, disponibilidad, espacio_id, estado, ventana }, { where: { id } });
+    const { nombre_habitacion, descripcion_habitacion, numero_habitacion, capacidad_habitacion, precio_habitacion, tipo_habitacion, piso, disponibilidad, espacio_id, estado, ventana } = habitacion;
+    const habitacionActualizada = await Habitacion.update({ nombre_habitacion, descripcion_habitacion, numero_habitacion, capacidad_habitacion, precio_habitacion, tipo_habitacion, piso, disponibilidad, espacio_id, estado, ventana }, { where: { id } });
     if (habitacionActualizada.length > 0) {
         return habitacion;
     } else {
