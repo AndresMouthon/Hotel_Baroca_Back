@@ -1,5 +1,5 @@
 const { Habitacion } = require("../../models/habitacion/Habitacion.model");
-const { queryFiltrarHabitaciones } = require("../../repositories/habitacion/habitacion.repositorie");
+const { queryFiltrarHabitaciones } = require("../../repositories/habitacion/habitacion.repository");
 const { Op } = require('sequelize');
 
 const getTodasLasHabitacionesByHotel = async (espacio_id = "") => {

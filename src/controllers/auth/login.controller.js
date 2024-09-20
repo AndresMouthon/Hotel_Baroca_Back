@@ -2,7 +2,7 @@ const { createToken } = require("../../utils/jwt.util");
 const { comparePassword } = require("../../utils/functions.util");
 const { encriptacion, LLAVE_SEGUNDA } = require("../../utils/crypto.util");
 const { getEmpleadoById } = require("../../controllers/persona/empleado.controller");
-const { Usuario } = require("../../models/auth/Usuario.model");
+const { Usuario } = require("../../models/persona/Usuario.model");
 
 const login = async (usuario = "", passwordParam = "") => {
     try {

@@ -1,8 +1,8 @@
-const { Empleado } = require("../../models/auth/Empleado.model");
+const { Empleado } = require("../../models/persona/Empleado.model");
 const {
     deleteEliminarUsuario,
 } = require("../../controllers/persona/usuario.controller");
-const { Usuario } = require("../../models/auth/Usuario.model");
+const { Usuario } = require("../../models/persona/Usuario.model");
 
 const getTodosLosEmpleados = async () => {
     const empleados = await Empleado.findAll({
