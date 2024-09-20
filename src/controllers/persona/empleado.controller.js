@@ -14,6 +14,13 @@ const getTodosLosEmpleados = async () => {
     return empleados;
 };
 
+const getEmpleadoById = async (id = "") => {
+    const empleado = await Empleado.findOne({
+        where: { id },
+    });
+    return empleado;
+};
+
 const getEmpleadoByDocumento = async (documento = "") => {
     const empleado = await Empleado.findOne({
         where: { documento },
@@ -45,6 +52,7 @@ const deleteEliminarEmpleado = async (documento = "") => {
 
 module.exports = {
     getTodosLosEmpleados,
+    getEmpleadoById,
     getEmpleadoByDocumento,
     postCrearEmpleado,
     putActualizarEmpleado,
