@@ -18,14 +18,30 @@ const { Preregistro } = require("../../models/registro/Preregistro.model");
 // };
 
 const getReservas = async () => {
-    const reservas = await Reserva.findAll({
-        where: {
-            ciudad: {
-                [Sequelize.Op.ne]: null
+    const reserva = await Reserva.findAll({
+        attributes: ["transporte", "motivo_viaje", "fecha_entrada", "fecha_salida"],
+        include: [
+            {
+                model: Preregistro,
+                attributes: ["observacion", "estado", "fecha_ingreso"],
+                include: [
+                    {
+                        model: Cliente,
+                        attributes: ["tipo_documento", "documento", "nombres", "apellidos", "pais", "departamento", "ciudad", "direccion", "telefono", "email", "fecha_nacimiento"],
+                    },
+                    {
+                        model: Espacio,
+                        attributes: ["descripcion", "tipo_espacio"],
+                    }
+                ]
+            },
+            {
+                model: Habitacion,
+                attributes: ["nombre_habitacion", "descripcion_habitacion", "numero_habitacion", "capacidad_habitacion", "precio_habitacion", "tipo_habitacion", "piso", "disponibilidad", "estado", "ventana"],
             }
-        }
+        ]
     });
-    return reservas;
+    return reserva;
 };
 
 const getReservaByDocumento = async (documento = "") => {
