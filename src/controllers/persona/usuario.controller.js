@@ -1,4 +1,4 @@
-const { Usuario } = require("../../models/auth/Usuario.model");
+const { Usuario } = require("../../models/persona/Usuario.model");
 const { hashPassword } = require('../../utils/functions.util');
 
 const getUsuarioByDocumento = async (documento = "") => {
