@@ -7,7 +7,7 @@ const { Usuario } = require("../../models/persona/Usuario.model");
 const login = async (usuario = "", passwordParam = "") => {
     try {
         const response = await Usuario.findOne({
-            where: { usuario },
+            where: { documento: usuario },
         });
         if (response) {
             const { id, password, rol_id } = response.dataValues;
