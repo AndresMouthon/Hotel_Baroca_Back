@@ -1,5 +1,7 @@
 const { Preregistro } = require("../../models/registro/Preregistro.model");
 const { DetallePreregistro } = require("../../models/registro/DetallePreregistro.model");
+const { Cliente } = require("../../models/persona/Cliente.model");
+const { Espacio } = require("../../models/espacio/espacio.model");
 
 const postCrearRegistro = async (preregistros = {}) => {
     try {
@@ -18,7 +20,20 @@ const postCrearRegistro = async (preregistros = {}) => {
 };
 
 const getPreregistro = async () => {
-    const preregistro = await Preregistro.findAll();
+    const preregistro = await Preregistro.findAll({
+        include: [
+            {
+                model: Cliente,
+                required: false,
+                attributes: ["tipo_documento", "documento", "nombres", "apellidos", "pais", "departamento", "ciudad", "direccion", "telefono", "email", "fecha_nacimiento"],
+            },
+            {
+                model: Espacio,
+                required: false,
+                attributes: ["descripcion", "tipo_espacio"],
+            }
+        ]
+    });
     return preregistro;
 };
 

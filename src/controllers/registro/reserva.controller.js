@@ -50,21 +50,25 @@ const getReservaByDocumento = async (documento = "") => {
         include: [
             {
                 model: Preregistro,
+                required: false,
                 attributes: ["observacion", "estado", "fecha_ingreso"],
                 include: [
                     {
                         model: Cliente,
+                        required: false,
                         attributes: ["tipo_documento", "documento", "nombres", "apellidos", "pais", "departamento", "ciudad", "direccion", "telefono", "email", "fecha_nacimiento"],
                         where: { documento }
                     },
                     {
                         model: Espacio,
+                        required: false,
                         attributes: ["descripcion", "tipo_espacio"],
                     }
                 ]
             },
             {
                 model: Habitacion,
+                required: false,
                 attributes: ["nombre_habitacion", "descripcion_habitacion", "numero_habitacion", "capacidad_habitacion", "precio_habitacion", "tipo_habitacion", "piso", "disponibilidad", "estado", "ventana"],
             }
         ]
