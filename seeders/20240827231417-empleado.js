@@ -6,7 +6,7 @@ module.exports = {
     await queryInterface.bulkInsert('empleados', [
       {
         usuario_id: 1,
-        documento: "1003059060",
+        documento: "123",
         nombres: 'Andres Domingo',
         apellidos: 'Mouthon',
         genero: 'Masculino',

@@ -87,9 +87,9 @@ ruta.delete("/eliminar-habitacion/:id",
     async (req, res) => {
         try {
             const response = await deleteEliminarHabitacion(req.params.id);
-            res.status(200).json({ mensaje: response });
+            res.status(200).json({ status: true, mensaje: response });
         } catch (error) {
-            res.status(400).json({ mensaje: "La peticion fallo", error });
+            res.status(400).json({ status: false, mensaje: "La peticion fallo", error });
         };
     }
 );
