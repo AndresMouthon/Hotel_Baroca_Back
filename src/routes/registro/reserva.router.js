@@ -1,43 +1,12 @@
 const ruta = require("express").Router();
-const { getReservas, getReservaByDocumento } = require("../../controllers/registro/reserva.controller");
-
-// ruta.post("/crear-reserva",
-//     async (req, res) => {
-//         try {
-//             const habitacionesGenerales = await getHabitacionesFiltradas(req.body.tipo_habitacion);
-//             if (habitacionesGenerales.length === 0) {
-//                 return res.json({
-//                     status: false,
-//                     message: "No hay habitaciones disponibles para " + req.body.nombres + " " + req.body.apellidos + " de ese tipo",
-//                 });
-//             } else {
-//                 req.body.habitacion_id = habitacionesGenerales[0].id;
-//                 delete req.body.created_at;
-//                 delete req.body.updated_at;
-//             }
-//             const { DetallePreregistros } = req.body;
-//             for (const detalle_preregistro of DetallePreregistros) {
-//                 const habitaciones = await getHabitacionesFiltradas(detalle_preregistro.tipo_habitacion);
-//                 if (habitaciones.length === 0) {
-//                     return res.json({
-//                         status: false,
-//                         message: "No hay habitaciones disponibles para " + detalle_preregistro.nombres + " " + detalle_preregistro.apellidos + " de ese tipo",
-//                     });
-//                 } else {
-//                     detalle_preregistro.habitacion_id = habitaciones[0].id;
-//                     detalle_preregistro.codigo_grupo = req.body.id;
-//                     detalle_preregistro.fecha_salida = req.body.fecha_salida;
-//                 }
-//             }
-//             delete req.body.DetallePreregistros;
-//             DetallePreregistros.push(req.body);
-//             const response = await postCrearReserva(DetallePreregistros);
-//             res.json({ status: true, message: response });
-//         } catch (error) {
-//             console.log(error);
-//         };
-//     }
-// );
+const { validarBodyReserva } = require("../../schemas/registro/reserva.schema");
+const {
+    getReservas,
+    getReservaByDocumento,
+    postCrearReserva,
+    putActualizarReserva,
+} = require("../../controllers/registro/reserva.controller");
+const { validacionDeParametros } = require("../../middlewares/validaciones.middleware");
 
 ruta.get("/todas-las-reservas",
     async (req, res) => {
@@ -57,6 +26,36 @@ ruta.get("/obtener-reserva-por-documento/:documento",
             res.status(200).json(reserva);
         } catch (error) {
             res.status(400).json({ mensaje: "La peticion fallo", error });
+        };
+    }
+);
+
+ruta.post("/crear-reserva",
+    validarBodyReserva,
+    validacionDeParametros,
+    async (req, res) => {
+        try {
+            const reserva = await postCrearReserva(req.body);
+            res.status(201).json({
+                status: true,
+                message: reserva,
+            });
+        } catch (error) {
+            console.log(error);
+        };
+    }
+);
+
+ruta.put("/actualizar-reserva/:id",
+    async (req, res) => {
+        try {
+            const reserva = await putActualizarReserva(req.params.id, req.body);
+            res.status(200).json({
+                status: true,
+                message: reserva,
+            });
+        } catch (error) {
+            console.log(error);
         };
     }
 );

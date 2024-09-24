@@ -3,22 +3,6 @@ const { DetallePreregistro } = require("../../models/registro/DetallePreregistro
 const { Cliente } = require("../../models/persona/Cliente.model");
 const { Espacio } = require("../../models/espacio/espacio.model");
 
-const postCrearRegistro = async (preregistros = {}) => {
-    try {
-        const { fecha_ingreso, tipo_habitacion, cliente_id, espacio_id, observacion } = preregistros;
-        const preregistro = await Preregistro.create({
-            fecha_ingreso,
-            tipo_habitacion,
-            cliente_id,
-            espacio_id,
-            observacion,
-        });
-        return preregistro;
-    } catch (error) {
-        console.log(error);
-    }
-};
-
 const getPreregistro = async () => {
     const preregistro = await Preregistro.findAll({
         include: [
@@ -48,6 +32,22 @@ const getPreregistroByUsuario = async (documento = "") => {
     return preregistro;
 };
 
+const postCrearRegistro = async (preregistros = {}) => {
+    try {
+        const { fecha_ingreso, tipo_habitacion, cliente_id, espacio_id, observacion } = preregistros;
+        const preregistro = await Preregistro.create({
+            fecha_ingreso,
+            tipo_habitacion,
+            cliente_id,
+            espacio_id,
+            observacion,
+        });
+        return preregistro;
+    } catch (error) {
+        console.log(error);
+    }
+};
+
 const putActualizarPreregistro = async (preregistro = {}) => {
     const { documento } = preregistro;
     const user = await Preregistro.update({
@@ -63,8 +63,8 @@ const putActualizarPreregistro = async (preregistro = {}) => {
 };
 
 module.exports = {
-    postCrearRegistro,
     getPreregistro,
     getPreregistroByUsuario,
+    postCrearRegistro,
     putActualizarPreregistro,
 };

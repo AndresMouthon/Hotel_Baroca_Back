@@ -78,8 +78,8 @@ Habitacion.init({
     timestamps: false,
 });
 
-Espacio.hasMany(Habitacion, { foreignKey: "habitacion_id" });
-Habitacion.belongsTo(Espacio, { foreignKey: "habitacion_id" });
+Espacio.hasMany(Habitacion, { foreignKey: "espacio_id" });
+Habitacion.belongsTo(Espacio, { foreignKey: "espacio_id" });
 
 module.exports = {
     Habitacion,
