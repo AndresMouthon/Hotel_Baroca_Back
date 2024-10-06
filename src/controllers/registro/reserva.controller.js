@@ -4,6 +4,7 @@ const { Espacio } = require("../../models/espacio/espacio.model");
 const { Habitacion } = require("../../models/habitacion/Habitacion.model");
 const { Preregistro } = require("../../models/registro/Preregistro.model");
 const { putActualizarHabitacion } = require("../../controllers/habitacion/habitacion.controller");
+const { putActualizarPreregistro } = require("../../controllers/registro/preregistro.controller");
 
 const getReservas = async () => {
     const reserva = await Reserva.findAll({
@@ -74,6 +75,7 @@ const getReservaByDocumento = async (documento = "") => {
 const postCrearReserva = async (reserva = {}) => {
     const { transporte, motivo_viaje, habitacion_id, preregistro_id, fecha_salida } = reserva;
     const nuevaReserva = await Reserva.create({ transporte, motivo_viaje, habitacion_id, preregistro_id, fecha_salida });
+    await putActualizarPreregistro({ id: preregistro_id, estado: "Reservado" });
     await putActualizarHabitacion(habitacion_id, { disponibilidad: "No disponible" });
     return nuevaReserva;
 };

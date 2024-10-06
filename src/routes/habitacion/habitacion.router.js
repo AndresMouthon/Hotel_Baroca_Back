@@ -37,7 +37,7 @@ ruta.get("/todos-los-habitaciones-filtradas",
 ruta.get("/todas-las-habitaciones-filtradas-por-hotel-tipo",
     async (req, res) => {
         try {
-            const habitaciones = await getHabitacionesByTipoAndHotel(req.body);
+            const habitaciones = await getHabitacionesByTipoAndHotel(req.query);
             res.status(200).json(habitaciones);
         } catch (error) {
             res.status(400).json({ mensaje: "La peticion fallo", error });
