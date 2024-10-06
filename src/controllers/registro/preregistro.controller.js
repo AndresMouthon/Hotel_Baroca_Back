@@ -36,11 +36,23 @@ const getPreregistrosPendientes = async () => {
     try {
         const preregistro = await Preregistro.findAll({
             where: { estado: "En proceso" },
-            include: {
-                model: DetallePreregistro,
-                required: false,
-                attributes: ["nombres", "apellidos", "documento"],
-            }
+            include: [
+                {
+                    model: DetallePreregistro,
+                    required: false,
+                    attributes: ["nombres", "apellidos", "documento"],
+                },
+                {
+                    model: Cliente,
+                    required: false,
+                    attributes: ["tipo_documento", "documento", "nombres", "apellidos", "pais", "departamento", "ciudad", "direccion", "telefono", "email", "fecha_nacimiento"],
+                },
+                {
+                    model: Espacio,
+                    required: false,
+                    attributes: ["descripcion", "tipo_espacio"],
+                }
+            ],
         });
         return preregistro;
     } catch (error) {
