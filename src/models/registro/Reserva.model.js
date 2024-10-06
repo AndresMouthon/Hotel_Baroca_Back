@@ -11,6 +11,14 @@ Reserva.init({
         primaryKey: true,
         autoIncrement: true,
     },
+    ciudad_procedencia: {
+        type: DataTypes.STRING,
+        allowNull: false,  
+    },
+    ciudad_destino: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
     transporte: {
         type: DataTypes.STRING,
         allowNull: true,
@@ -39,7 +47,11 @@ Reserva.init({
         type: DataTypes.STRING,
         allowNull: false,
     },
-    fecha_entrada: {
+    noches: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    },
+    created_at: {
         type: DataTypes.DATE,
         defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
         allowNull: false,

@@ -8,6 +8,14 @@ module.exports = {
         primaryKey: true,
         autoIncrement: true,
       },
+      ciudad_procedencia: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      ciudad_destino: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       transporte: {
         type: Sequelize.STRING,
         allowNull: true,
@@ -28,7 +36,11 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      fecha_entrada: {
+      noches: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      created_at: {
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),
         allowNull: false,

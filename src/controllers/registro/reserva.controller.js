@@ -73,8 +73,8 @@ const getReservaByDocumento = async (documento = "") => {
 };
 
 const postCrearReserva = async (reserva = {}) => {
-    const { transporte, motivo_viaje, habitacion_id, preregistro_id, fecha_salida } = reserva;
-    const nuevaReserva = await Reserva.create({ transporte, motivo_viaje, habitacion_id, preregistro_id, fecha_salida });
+    const { transporte, motivo_viaje, habitacion_id, preregistro_id, fecha_salida, noches, ciudad_procedencia, ciudad_destino } = reserva;
+    const nuevaReserva = await Reserva.create({ transporte, motivo_viaje, habitacion_id, preregistro_id, fecha_salida, noches, ciudad_procedencia, ciudad_destino });
     await putActualizarEstadoPreregistro({ preregistro_id, estado: "Reservado" });
     await putActualizarHabitacion(habitacion_id, { disponibilidad: "No disponible" });
     return nuevaReserva;
