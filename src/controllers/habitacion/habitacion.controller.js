@@ -22,8 +22,7 @@ const getHabitacionesFiltradas = async (tipo_habitacion = "") => {
     return response;
 };
 
-const getHabitacionesByTipoAndHotel = async (filtro = {}) => {
-    const { tipo_habitacion, espacio_id } = filtro;
+const getHabitacionesByTipoAndHotel = async (espacio_id = "", tipo_habitacion = "") => {
     const habitacionesByTipoAndHotel = await Habitacion.findAll({
         where: {
             [Op.and]: [

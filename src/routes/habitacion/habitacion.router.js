@@ -34,10 +34,10 @@ ruta.get("/todos-los-habitaciones-filtradas",
     }
 );
 
-ruta.get("/todas-las-habitaciones-filtradas-por-hotel-tipo",
+ruta.get("/todas-las-habitaciones-filtradas-por-hotel-tipo/:hotel/:habitacion",
     async (req, res) => {
         try {
-            const habitaciones = await getHabitacionesByTipoAndHotel(req.query);
+            const habitaciones = await getHabitacionesByTipoAndHotel(req.params.hotel, req.params.habitacion);
             res.status(200).json(habitaciones);
         } catch (error) {
             res.status(400).json({ mensaje: "La peticion fallo", error });
