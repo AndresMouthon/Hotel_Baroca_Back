@@ -2,7 +2,6 @@ const { Preregistro } = require("../../models/registro/Preregistro.model");
 const { DetallePreregistro } = require("../../models/registro/DetallePreregistro.model");
 const { Cliente } = require("../../models/persona/Cliente.model");
 const { Espacio } = require("../../models/espacio/espacio.model");
-const { Op } = require("sequelize");
 
 const getPreregistro = async () => {
     const preregistro = await Preregistro.findAll({
@@ -66,16 +65,11 @@ const postCrearRegistro = async (preregistros = {}) => {
 };
 
 const putActualizarPreregistro = async (preregistro = {}) => {
-    const { documento, id } = preregistro;
+    const { documento } = preregistro;
     const user = await Preregistro.update({
         preregistro
     }, {
-        where: {
-            [Op.or]: [
-                { documento },
-                { id }
-            ]
-        },
+        where: { documento },
     });
     if (user.length > 0) {
         const preregistro_actualizado = await getPreregistroByUsuario(documento);
@@ -84,10 +78,25 @@ const putActualizarPreregistro = async (preregistro = {}) => {
     return null;
 };
 
+const putActualizarEstadoPreregistro = async (preregistro = {}) => {
+    const { preregistro_id, estado } = preregistro;
+    try {
+        await Preregistro.update({
+            estado,
+        }, {
+            where: { id: preregistro_id },
+        });
+    } catch (error) {
+        console.log(error);
+    }
+    return "Preregistro actualizado";
+};
+
 module.exports = {
     getPreregistro,
     getPreregistroByUsuario,
     postCrearRegistro,
     putActualizarPreregistro,
+    putActualizarEstadoPreregistro,
     getPreregistrosPendientes
 };
