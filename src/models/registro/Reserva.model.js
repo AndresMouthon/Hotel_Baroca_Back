@@ -58,7 +58,7 @@ Reserva.init({
 
 Habitacion.hasMany(Reserva, { foreignKey: "habitacion_id" });
 Reserva.belongsTo(Habitacion, { foreignKey: "habitacion_id" });
-Preregistro.hasMany(Reserva, { foreignKey: "preregistro_id" });
+Preregistro.hasOne(Reserva, { foreignKey: "preregistro_id" });
 Reserva.belongsTo(Preregistro, { foreignKey: "preregistro_id" });
 
 module.exports = { Reserva };

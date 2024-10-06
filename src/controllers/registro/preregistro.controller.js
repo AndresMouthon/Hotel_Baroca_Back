@@ -32,6 +32,23 @@ const getPreregistroByUsuario = async (documento = "") => {
     return preregistro;
 };
 
+const getPreregistrosPendientes = async () => {
+    try {
+        const preregistro = await Preregistro.findAll({
+            where: { estado: "En proceso" },
+            // include: {
+            //     model: DetallePreregistro,
+            //     required: false,
+            //     attributes: ["nombres", "apellidos", "tipo_documento", "documento", "telefono", "tipo_habitacion"],
+            // }
+        });
+        console.log(preregistro)
+        return preregistro;
+    } catch (error) {
+        console.log(error)
+    }
+};
+
 const postCrearRegistro = async (preregistros = {}) => {
     try {
         const { fecha_ingreso, tipo_habitacion, cliente_id, espacio_id, observacion } = preregistros;
@@ -67,4 +84,5 @@ module.exports = {
     getPreregistroByUsuario,
     postCrearRegistro,
     putActualizarPreregistro,
+    getPreregistrosPendientes
 };
