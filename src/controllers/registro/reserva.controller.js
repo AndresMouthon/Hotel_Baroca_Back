@@ -8,7 +8,6 @@ const { putActualizarEstadoPreregistro } = require("../../controllers/registro/p
 
 const getReservas = async () => {
     const reserva = await Reserva.findAll({
-        attributes: ["transporte", "motivo_viaje", "fecha_salida"],
         include: [
             {
                 model: Preregistro,
