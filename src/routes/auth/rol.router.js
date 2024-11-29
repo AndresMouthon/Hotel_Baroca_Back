@@ -1,4 +1,7 @@
 const ruta = require("express").Router();
+const { validarBodyRol } = require("../../schemas/auth/rol.schema");
+const { roles } = require("../../utils/contants.util");
+const { ADMINISTRADOR } = roles;
 const {
     getTodosLosRoles,
     postRegistrarRol,
@@ -7,9 +10,10 @@ const {
 } = require("../../controllers/auth/rol.controller");
 const { validacionDeParametros } = require("../../middlewares/validaciones.middleware");
 const { verificarIdRol } = require("../../middlewares/auth/rol.middleware");
-const { validarBodyRol } = require("../../schemas/auth/rol.schema");
+const { jwtMiddleware } = require("../../middlewares/auth/jwt.middleware");
 
 ruta.get("/buscar-roles",
+    jwtMiddleware([ADMINISTRADOR]),
     async (req, res) => {
         try {
             const rol = await getTodosLosRoles();
@@ -24,6 +28,7 @@ ruta.get("/buscar-roles",
 );
 
 ruta.post("/registrar-rol",
+    jwtMiddleware([ADMINISTRADOR]),
     validarBodyRol,
     validacionDeParametros,
     async (req, res) => {
@@ -36,6 +41,7 @@ ruta.post("/registrar-rol",
 );
 
 ruta.put("/actualizar-rol/:id",
+    jwtMiddleware([ADMINISTRADOR]),
     validarBodyRol,
     validacionDeParametros,
     verificarIdRol,
@@ -49,6 +55,7 @@ ruta.put("/actualizar-rol/:id",
 );
 
 ruta.delete("/eliminar-rol/:id",
+    jwtMiddleware([ADMINISTRADOR]),
     verificarIdRol,
     async (req, res) => {
         const response = await deleteEliminarRol(req.params.id);

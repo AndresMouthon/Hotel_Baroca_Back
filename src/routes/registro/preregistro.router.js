@@ -1,8 +1,12 @@
 const ruta = require("express").Router();
+const { roles } = require("../../utils/contants.util");
+const { RECEPSIONISTA } = roles;
 const { postCrearRegistro, getPreregistro, getPreregistroByUsuario, putActualizarPreregistro, getPreregistrosPendientes } = require("../../controllers/registro/preregistro.controller");
 const { validacionDeParametros } = require("../../middlewares/validaciones.middleware");
+const { jwtMiddleware } = require("../../middlewares/auth/jwt.middleware");
 
 ruta.get("/todos-los-preregistros",
+    jwtMiddleware([RECEPSIONISTA]),
     async (req, res) => {
         try {
             const preregistro = await getPreregistro();
@@ -14,6 +18,7 @@ ruta.get("/todos-los-preregistros",
 );
 
 ruta.post("/guardar-preregistro",
+    jwtMiddleware([RECEPSIONISTA]),
     validacionDeParametros,
     async (req, res) => {
         const preregistro = await postCrearRegistro(req.body);
@@ -25,6 +30,7 @@ ruta.post("/guardar-preregistro",
 );
 
 ruta.get("/buscar-preregistro/:documento",
+    jwtMiddleware([RECEPSIONISTA]),
     async (req, res) => {
         try {
             const preregistro = await getPreregistroByUsuario(req.params.documento);
@@ -39,6 +45,7 @@ ruta.get("/buscar-preregistro/:documento",
 )
 
 ruta.get("/preregistros-pendientes",
+    jwtMiddleware([RECEPSIONISTA]),
     async (req, res) => {
         try {
             const preregistro = await getPreregistrosPendientes();

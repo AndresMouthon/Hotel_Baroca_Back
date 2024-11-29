@@ -1,4 +1,7 @@
 const ruta = require("express").Router();
+const { validarBodyHabitacion } = require("../../schemas/habitacion/habitacion.schema");
+const { roles } = require("../../utils/contants.util");
+const { ADMINISTRADOR } = roles;
 const {
     getTodasLasHabitacionesByHotel,
     getHabitacionesFiltradas,
@@ -10,9 +13,10 @@ const {
 } = require("../../controllers/habitacion/habitacion.controller");
 const { validacionDeParametros } = require("../../middlewares/validaciones.middleware");
 const { verificarIdHabitacion } = require("../../middlewares/habitacion/habitacion.middleware");
-const { validarBodyHabitacion } = require("../../schemas/habitacion/habitacion.schema");
+const { jwtMiddleware } = require("../../middlewares/auth/jwt.middleware");
 
 ruta.get("/todas-las-habitaciones-por-hotel/:espacio_id",
+    jwtMiddleware([ADMINISTRADOR]),
     async (req, res) => {
         try {
             const habitaciones = await getTodasLasHabitacionesByHotel(req.params.espacio_id);
@@ -24,6 +28,7 @@ ruta.get("/todas-las-habitaciones-por-hotel/:espacio_id",
 );
 
 ruta.get("/todos-los-habitaciones-filtradas",
+    jwtMiddleware([ADMINISTRADOR]),
     async (req, res) => {
         try {
             const habitaciones = await getHabitacionesFiltradas(req.body.tipo_habitacion);
@@ -35,6 +40,7 @@ ruta.get("/todos-los-habitaciones-filtradas",
 );
 
 ruta.get("/todas-las-habitaciones-filtradas-por-hotel-tipo/:hotel/:habitacion",
+    jwtMiddleware([ADMINISTRADOR]),
     async (req, res) => {
         try {
             const habitaciones = await getHabitacionesByTipoAndHotel(req.params.hotel, req.params.habitacion);
@@ -46,6 +52,7 @@ ruta.get("/todas-las-habitaciones-filtradas-por-hotel-tipo/:hotel/:habitacion",
 );
 
 ruta.get("/todas-las-habitaciones-filtradas-por-hotel-piso",
+    jwtMiddleware([ADMINISTRADOR]),
     async (req, res) => {
         try {
             const habitaciones = await getHabitacionesByPisoAndHotel(req.body);
@@ -57,6 +64,7 @@ ruta.get("/todas-las-habitaciones-filtradas-por-hotel-piso",
 );
 
 ruta.post("/registrar-habitacion",
+    jwtMiddleware([ADMINISTRADOR]),
     validarBodyHabitacion,
     validacionDeParametros,
     async (req, res) => {
@@ -69,6 +77,7 @@ ruta.post("/registrar-habitacion",
 );
 
 ruta.put("/actualizar-habitacion/:id",
+    jwtMiddleware([ADMINISTRADOR]),
     validarBodyHabitacion,
     validacionDeParametros,
     verificarIdHabitacion,
@@ -82,6 +91,7 @@ ruta.put("/actualizar-habitacion/:id",
 );
 
 ruta.delete("/eliminar-habitacion/:id",
+    jwtMiddleware([ADMINISTRADOR]),
     validacionDeParametros,
     verificarIdHabitacion,
     async (req, res) => {

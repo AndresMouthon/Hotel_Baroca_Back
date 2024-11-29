@@ -1,4 +1,7 @@
 const ruta = require("express").Router();
+const { validarBodyEmpleado } = require("../../schemas/persona/empleado.schema");
+const { roles } = require("../../utils/contants.util");
+const { ADMINISTRADOR } = roles;
 const {
     getTodosLosEmpleados,
     getEmpleadoByDocumento,
@@ -12,9 +15,10 @@ const {
 } = require("../../controllers/persona/usuario.controller");
 const { validacionDeParametros } = require("../../middlewares/validaciones.middleware");
 const { verificarDocumentoEmpleado } = require("../../middlewares/persona/empleado.middleware");
-const { validarBodyEmpleado } = require("../../schemas/persona/empleado.schema");
+const { jwtMiddleware } = require("../../middlewares/auth/jwt.middleware");
 
 ruta.get("/buscar-empleados",
+    jwtMiddleware([ADMINISTRADOR]),
     async (req, res) => {
         try {
             const response = await getTodosLosEmpleados();
@@ -29,6 +33,7 @@ ruta.get("/buscar-empleados",
 );
 
 ruta.get("/buscar-empleado/:documento",
+    jwtMiddleware([ADMINISTRADOR]),
     async (req, res) => {
         try {
             const empleado = await getEmpleadoByDocumento(req.params.documento);
@@ -50,6 +55,7 @@ ruta.get("/buscar-empleado/:documento",
 );
 
 ruta.post("/registrar-empleado",
+    jwtMiddleware([ADMINISTRADOR]),
     validarBodyEmpleado,
     validacionDeParametros,
     verificarDocumentoEmpleado,
@@ -64,6 +70,7 @@ ruta.post("/registrar-empleado",
 );
 
 ruta.put("/actualizar-empleado",
+    jwtMiddleware([ADMINISTRADOR]),
     validarBodyEmpleado,
     validacionDeParametros,
     verificarDocumentoEmpleado,
@@ -78,6 +85,7 @@ ruta.put("/actualizar-empleado",
 );
 
 ruta.delete("/eliminar-empleado/:documento",
+    jwtMiddleware([ADMINISTRADOR]),
     validacionDeParametros,
     verificarDocumentoEmpleado,
     async (req, res) => {

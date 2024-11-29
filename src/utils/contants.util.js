@@ -3,6 +3,7 @@ const listaNegra = new Array(100).fill(null);
 
 const roles = Object.freeze({
     ADMINISTRADOR: 1,
+    RECEPSIONISTA: 1,
 });
 
 module.exports = {

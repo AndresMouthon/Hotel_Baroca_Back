@@ -1,5 +1,7 @@
 const ruta = require("express").Router();
 const { validarBodyReserva } = require("../../schemas/registro/reserva.schema");
+const { roles } = require("../../utils/contants.util");
+const { RECEPSIONISTA } = roles;
 const {
     getReservas,
     getReservaByDocumento,
@@ -7,8 +9,10 @@ const {
     putActualizarReserva,
 } = require("../../controllers/registro/reserva.controller");
 const { validacionDeParametros } = require("../../middlewares/validaciones.middleware");
+const { jwtMiddleware } = require("../../middlewares/auth/jwt.middleware");
 
 ruta.get("/todas-las-reservas",
+    jwtMiddleware([RECEPSIONISTA]),
     async (req, res) => {
         try {
             const reservas = await getReservas();
@@ -20,6 +24,7 @@ ruta.get("/todas-las-reservas",
 );
 
 ruta.get("/obtener-reserva-por-documento/:documento",
+    jwtMiddleware([RECEPSIONISTA]),
     async (req, res) => {
         try {
             const reserva = await getReservaByDocumento(req.params.documento);
@@ -31,6 +36,7 @@ ruta.get("/obtener-reserva-por-documento/:documento",
 );
 
 ruta.post("/crear-reserva",
+    jwtMiddleware([RECEPSIONISTA]),
     validarBodyReserva,
     validacionDeParametros,
     async (req, res) => {
@@ -47,6 +53,7 @@ ruta.post("/crear-reserva",
 );
 
 ruta.put("/actualizar-reserva/:id",
+    jwtMiddleware([RECEPSIONISTA]),
     async (req, res) => {
         try {
             const reserva = await putActualizarReserva(req.params.id, req.body);

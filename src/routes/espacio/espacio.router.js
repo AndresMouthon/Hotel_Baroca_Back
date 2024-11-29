@@ -1,7 +1,11 @@
 const ruta = require("express").Router();
+const { roles } = require("../../utils/contants.util");
+const { RECEPSIONISTA } = roles;
 const { getEspacioByType } = require("../../controllers/espacio/espacio.controller");
+const { jwtMiddleware } = require("../../middlewares/auth/jwt.middleware");
 
 ruta.get("/buscar-espacio/:type",
+    jwtMiddleware([RECEPSIONISTA]),
     async (req, res) => {
         try {
             const espacio = await getEspacioByType(req.params.type);
