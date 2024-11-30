@@ -18,7 +18,6 @@ ruta.get("/todos-los-preregistros",
 );
 
 ruta.post("/guardar-preregistro",
-    jwtMiddleware([RECEPSIONISTA]),
     validacionDeParametros,
     async (req, res) => {
         const preregistro = await postCrearRegistro(req.body);
@@ -45,7 +44,6 @@ ruta.get("/buscar-preregistro/:documento",
 )
 
 ruta.get("/preregistros-pendientes",
-    jwtMiddleware([RECEPSIONISTA]),
     async (req, res) => {
         try {
             const preregistro = await getPreregistrosPendientes();
