@@ -1,6 +1,6 @@
 const { Reserva } = require("../../models/registro/Reserva.model");
 const { Cliente } = require("../../models/persona/Cliente.model");
-const { Espacio } = require("../../models/espacio/espacio.model");
+const { Espacio } = require("../../models/espacio/Espacio.model");
 const { Habitacion } = require("../../models/habitacion/Habitacion.model");
 const { Preregistro } = require("../../models/registro/Preregistro.model");
 const { putActualizarHabitacion } = require("../../controllers/habitacion/habitacion.controller");

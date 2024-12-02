@@ -1,7 +1,7 @@
 const { Model, DataTypes, Sequelize } = require("sequelize");
 const { sequelize } = require("../../../config/sequelize.config");
 const { Cliente } = require("../persona/Cliente.model");
-const { Espacio } = require("../espacio/espacio.model");
+const { Espacio } = require("../espacio/Espacio.model");
 
 class Preregistro extends Model { };
 

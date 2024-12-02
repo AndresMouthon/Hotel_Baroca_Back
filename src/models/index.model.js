@@ -1,6 +1,5 @@
 require("./habitacion/Habitacion.model");
 require("./persona/Cliente.model");
-require("./espacio/Espacio.model");
 require("./registro/Reserva_evento.model");
 require("./registro/Preregistro.model");
 require("./registro/DetallePreregistro.model");
@@ -8,3 +7,4 @@ require("./auth/Rol.model");
 require("./persona/Usuario.model");
 require("./persona/Empleado.model");
 require("./registro/Reserva.model");
+require("./espacio/Espacio.model");

@@ -1,5 +1,5 @@
 const { Model, DataTypes, Sequelize } = require("sequelize");
-const { Espacio } = require("../espacio/espacio.model");
+const { Espacio } = require("../espacio/Espacio.model");
 const { sequelize } = require("../../../config/sequelize.config");
 
 class Habitacion extends Model { };

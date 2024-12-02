@@ -1,7 +1,7 @@
 const { Preregistro } = require("../../models/registro/Preregistro.model");
 const { DetallePreregistro } = require("../../models/registro/DetallePreregistro.model");
 const { Cliente } = require("../../models/persona/Cliente.model");
-const { Espacio } = require("../../models/espacio/espacio.model");
+const { Espacio } = require("../../models/espacio/Espacio.model");
 
 const getPreregistro = async () => {
     const preregistro = await Preregistro.findAll({
