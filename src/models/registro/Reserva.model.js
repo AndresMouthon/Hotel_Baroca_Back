@@ -43,10 +43,6 @@ Reserva.init({
             key: 'id',
         },
     },
-    fecha_salida: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
     noches: {
         type: DataTypes.INTEGER,
         allowNull: false,

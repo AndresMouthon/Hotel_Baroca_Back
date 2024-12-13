@@ -62,13 +62,14 @@ const getPreregistrosPendientes = async () => {
 
 const postCrearRegistro = async (preregistros = {}) => {
     try {
-        const { fecha_ingreso, tipo_habitacion, cliente_id, espacio_id, observacion } = preregistros;
+        const { fecha_ingreso, tipo_habitacion, cliente_id, espacio_id, observacion, fecha_salida } = preregistros;
         const preregistro = await Preregistro.create({
             fecha_ingreso,
             tipo_habitacion,
             cliente_id,
             espacio_id,
             observacion,
+            fecha_salida
         });
         return preregistro;
     } catch (error) {

@@ -32,10 +32,6 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: true,
       },
-      fecha_salida: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
       noches: {
         type: Sequelize.INTEGER,
         allowNull: false,

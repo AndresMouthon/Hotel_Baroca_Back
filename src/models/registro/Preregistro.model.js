@@ -44,6 +44,10 @@ Preregistro.init({
         allowNull: false,
         defaultValue: "En proceso",
     },
+    fecha_salida: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
     created_at: {
         type: DataTypes.DATE,
         defaultValue: Sequelize.literal("CURRENT_TIMESTAMP"),

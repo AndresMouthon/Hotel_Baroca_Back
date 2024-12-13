@@ -41,7 +41,7 @@ const getReservaById = async (id = "") => {
 
 const getReservaByDocumento = async (documento = "") => {
     const reserva = await Reserva.findAll({
-        attributes: ["transporte", "motivo_viaje", "fecha_entrada", "fecha_salida"],
+        attributes: ["transporte", "motivo_viaje", "fecha_entrada"],
         include: [
             {
                 model: Preregistro,
@@ -72,17 +72,17 @@ const getReservaByDocumento = async (documento = "") => {
 };
 
 const postCrearReserva = async (reserva = {}) => {
-    const { transporte, motivo_viaje, habitacion_id, preregistro_id, fecha_salida, noches, ciudad_procedencia, ciudad_destino } = reserva;
-    const nuevaReserva = await Reserva.create({ transporte, motivo_viaje, habitacion_id, preregistro_id, fecha_salida, noches, ciudad_procedencia, ciudad_destino });
+    const { transporte, motivo_viaje, habitacion_id, preregistro_id, noches, ciudad_procedencia, ciudad_destino } = reserva;
+    const nuevaReserva = await Reserva.create({ transporte, motivo_viaje, habitacion_id, preregistro_id, noches, ciudad_procedencia, ciudad_destino });
     await putActualizarEstadoPreregistro({ preregistro_id, estado: "Reservado" });
     await putActualizarHabitacion(habitacion_id, { disponibilidad: "No disponible" });
     return nuevaReserva;
 };
 
 const putActualizarReserva = async (id = "", reserva = {}) => {
-    const { transporte, motivo_viaje, habitacion_id, preregistro_id, fecha_salida } = reserva;
+    const { transporte, motivo_viaje, habitacion_id, preregistro_id } = reserva;
     const buscarReserva = await getReservaById(id);
-    await Reserva.update({ transporte, motivo_viaje, habitacion_id, preregistro_id, fecha_salida }, { where: { id } });
+    await Reserva.update({ transporte, motivo_viaje, habitacion_id, preregistro_id }, { where: { id } });
     if (buscarReserva.dataValues.habitacion_id !== Number(habitacion_id)) {
         await putActualizarHabitacion(habitacion_id, { disponibilidad: "No disponible" });
         await putActualizarHabitacion(buscarReserva.dataValues.habitacion_id, { disponibilidad: "Disponible" });
